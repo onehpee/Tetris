@@ -120,6 +120,16 @@ namespace Tetris
                     Canvas.SetTop(_blockArray[3], 50);
                     break;
                 case BlockType.Cube:
+                    Canvas.SetLeft(_blockArray[0], 250);
+
+                    Canvas.SetLeft(_blockArray[1], 250);
+                    Canvas.SetTop(_blockArray[1], 100);
+
+                    Canvas.SetLeft(_blockArray[2], 200);
+                    Canvas.SetTop(_blockArray[2], 100);
+
+                    Canvas.SetLeft(_blockArray[3], 300);
+                    Canvas.SetTop(_blockArray[3], 250);
                     break;
                 case BlockType.Z:
                     break;
