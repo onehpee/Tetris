@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="Tetris" Height="1056" Width="1100">
     <Grid x:Name="TetrisMainWindow" Background="Black">
-        <Canvas x:Name="PlaySpaceCanvas" HorizontalAlignment="Left" Height="1000" Margin="300,10,0,0" VerticalAlignment="Top" Width="500">
-            <Canvas.Background>
+        <Grid x:Name="BlockController" Height="1000" Width="500" RowSpan="10" ColumnSpan="20">
+            <Grid.Background>
                 <DrawingBrush TileMode="Tile" Viewport="0,0,50,50" 
                               ViewportUnits="Absolute">
                     <DrawingBrush.Drawing>
@@ -22,8 +22,8 @@
                         </GeometryDrawing>
                     </DrawingBrush.Drawing>
                 </DrawingBrush>
-            </Canvas.Background>
-        </Canvas>
+            </Grid.Background>
+        </Grid>
         <Border x:Name="NextCanvasBorder" BorderBrush="Aqua" BorderThickness="5" Margin="825,75,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="225" Height="810">
             <Canvas x:Name="NextCanvas" HorizontalAlignment="Left" Height="810" Margin="-5" VerticalAlignment="Top" Width="225"/>
         </Border>
