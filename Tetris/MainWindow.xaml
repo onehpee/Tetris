@@ -54,5 +54,17 @@
         </RichTextBox>
         <Label x:Name="NextLabel" Content="Next" HorizontalAlignment="Left" Margin="893,10,0,0" VerticalAlignment="Top" Height="60" Width="93" FontSize="36" Background="{x:Null}" Foreground="Aqua"/>
         <Label x:Name="ScoreLabel" Content="Score" HorizontalAlignment="Left" Margin="893,900,0,0" VerticalAlignment="Top" Height="60" Width="113" FontSize="36" Background="{x:Null}" Foreground="Aqua"/>
+        <Button x:Name="StartButton" Content="Start" HorizontalAlignment="Left" Margin="10,938,0,0" VerticalAlignment="Top" Height="77" Width="259" Click="Start_Button_Click" FontSize="36" FontWeight="Bold" BorderBrush="Aqua" BorderThickness="5" Foreground="Aqua" Background="Transparent">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="DimGray"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 </Window>

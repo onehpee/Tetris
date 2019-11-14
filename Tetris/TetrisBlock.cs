@@ -18,9 +18,7 @@ namespace Tetris
 
     public class TetrisBlock
     {
-        private BlockType _blockType;
-        private int _currentX;
-        private int _currentY;
+        private readonly BlockType _blockType;
         private readonly Color _blockColor;
         private readonly Rectangle[] _blockArray;
 
@@ -132,14 +130,24 @@ namespace Tetris
         /// <summary>
         /// Move the block 
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        public void MoveBlock(int x, int y)
+        /// <param name="x"># blocks across (pos values down | neg values up)</param>
+        /// <param name="y"># blocks down (pos values down | neg values up)</param>
+        /// <param name="playSpaceCanvas">Represents the canvas that blocks exist in</param>
+        public void MoveBlock(int x, int y, ref Canvas playSpaceCanvas)
         {
-            _currentX = x;
-            _currentY = y;
+            var xOffset = (x * 50);
+            var yOffset = (y * 50);
 
-            // Redraw/refresh drawing
+            Canvas.SetLeft(_blockArray[0], Canvas.GetLeft(_blockArray[0]) + xOffset);
+
+            Canvas.SetLeft(_blockArray[1], Canvas.GetLeft(_blockArray[0]) + xOffset);
+            Canvas.SetTop(_blockArray[1], Canvas.GetLeft(_blockArray[0]) + yOffset);
+
+            Canvas.SetLeft(_blockArray[2], Canvas.GetLeft(_blockArray[0]) + xOffset);
+            Canvas.SetTop(_blockArray[2], Canvas.GetLeft(_blockArray[0]) + yOffset);
+
+            Canvas.SetLeft(_blockArray[3], Canvas.GetLeft(_blockArray[0]) + xOffset);
+            Canvas.SetTop(_blockArray[3], Canvas.GetLeft(_blockArray[0]) + yOffset);
         }
 
         /// <summary>
