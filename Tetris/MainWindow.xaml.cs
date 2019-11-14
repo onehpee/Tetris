@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Tetris
 {
@@ -20,11 +22,26 @@ namespace Tetris
     /// </summary>
     public partial class MainWindow : Window
     {
+        private TetrisBlock _currentTetrisBlock;
         public MainWindow()
         {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            TetrisBlock tb = new TetrisBlock(BlockType.L, ref PlaySpaceCanvas);
+            _currentTetrisBlock = new TetrisBlock(BlockType.L, ref PlaySpaceCanvas);
+        }
+
+        private void Start_Button_Click(object sender, RoutedEventArgs e)
+        {
+            var timer = new DispatcherTimer {Interval = new TimeSpan(0, 0, 1)};
+
+            timer.Tick += Timer_Tick;
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            // Run boolean collision check helper function
+            // Move block down 50px if space is available
+            _currentTetrisBlock.MoveBlock(1, 1, ref PlaySpaceCanvas);
         }
     }
 }
