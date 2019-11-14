@@ -23,25 +23,40 @@ namespace Tetris
     public partial class MainWindow : Window
     {
         private TetrisBlock _currentTetrisBlock;
+        private DispatcherTimer _timer;
         public MainWindow()
         {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
+            // Test Block
             _currentTetrisBlock = new TetrisBlock(BlockType.L, ref PlaySpaceCanvas);
         }
 
         private void Start_Button_Click(object sender, RoutedEventArgs e)
         {
-            var timer = new DispatcherTimer {Interval = new TimeSpan(0, 0, 1)};
+            if ((string)StartButton.Content == "Start")
+            {
+                StartButton.Content = "Stop";
 
-            timer.Tick += Timer_Tick;
+                _timer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 1) };
+
+                _timer.Tick += Timer_Tick;
+
+                _timer.Start();
+            }
+            else
+            {
+                StartButton.Content = "Start";
+                _timer.Stop();
+            }
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
             // Run boolean collision check helper function
             // Move block down 50px if space is available
-            _currentTetrisBlock.MoveBlock(1, 1, ref PlaySpaceCanvas);
+            _currentTetrisBlock.MoveBlock(0, 1, ref PlaySpaceCanvas);
         }
     }
 }
