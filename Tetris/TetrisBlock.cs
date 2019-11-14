@@ -83,6 +83,7 @@ namespace Tetris
             {
                 case BlockType.I:
                     Canvas.SetLeft(_blockArray[0], 250);
+                    Canvas.SetTop(_blockArray[0], 0);
 
                     Canvas.SetLeft(_blockArray[1], 250);
                     Canvas.SetTop(_blockArray[1], 50);
@@ -95,6 +96,7 @@ namespace Tetris
                     break;
                 case BlockType.L:
                     Canvas.SetLeft(_blockArray[0], 250);
+                    Canvas.SetTop(_blockArray[0], 0);
 
                     Canvas.SetLeft(_blockArray[1], 250);
                     Canvas.SetTop(_blockArray[1], 50);
@@ -107,6 +109,7 @@ namespace Tetris
                     break;
                 case BlockType.T:
                     Canvas.SetLeft(_blockArray[0], 250);
+                    Canvas.SetTop(_blockArray[0], 0);
 
                     Canvas.SetLeft(_blockArray[1], 250);
                     Canvas.SetTop(_blockArray[1], 50);
@@ -119,6 +122,7 @@ namespace Tetris
                     break;
                 case BlockType.Cube:
                     Canvas.SetLeft(_blockArray[0], 250);
+                    Canvas.SetTop(_blockArray[0], 0);
 
                     Canvas.SetLeft(_blockArray[1], 250);
                     Canvas.SetTop(_blockArray[1], 100);
@@ -149,15 +153,16 @@ namespace Tetris
             var yOffset = (y * 50);
 
             Canvas.SetLeft(_blockArray[0], Canvas.GetLeft(_blockArray[0]) + xOffset);
+            Canvas.SetTop(_blockArray[0], Canvas.GetTop(_blockArray[0]) + yOffset);
 
-            Canvas.SetLeft(_blockArray[1], Canvas.GetLeft(_blockArray[0]) + xOffset);
-            Canvas.SetTop(_blockArray[1], Canvas.GetLeft(_blockArray[0]) + yOffset);
+            Canvas.SetLeft(_blockArray[1], Canvas.GetLeft(_blockArray[1]) + xOffset);
+            Canvas.SetTop(_blockArray[1], Canvas.GetTop(_blockArray[1]) + yOffset);
 
-            Canvas.SetLeft(_blockArray[2], Canvas.GetLeft(_blockArray[0]) + xOffset);
-            Canvas.SetTop(_blockArray[2], Canvas.GetLeft(_blockArray[0]) + yOffset);
+            Canvas.SetLeft(_blockArray[2], Canvas.GetLeft(_blockArray[2]) + xOffset);
+            Canvas.SetTop(_blockArray[2], Canvas.GetTop(_blockArray[2]) + yOffset);
 
-            Canvas.SetLeft(_blockArray[3], Canvas.GetLeft(_blockArray[0]) + xOffset);
-            Canvas.SetTop(_blockArray[3], Canvas.GetLeft(_blockArray[0]) + yOffset);
+            Canvas.SetLeft(_blockArray[3], Canvas.GetLeft(_blockArray[3]) + xOffset);
+            Canvas.SetTop(_blockArray[3], Canvas.GetTop(_blockArray[3]) + yOffset);
         }
 
         /// <summary>

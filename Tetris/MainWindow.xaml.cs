@@ -35,13 +35,15 @@ namespace Tetris
             var timer = new DispatcherTimer {Interval = new TimeSpan(0, 0, 1)};
 
             timer.Tick += Timer_Tick;
+
+            timer.Start();
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
             // Run boolean collision check helper function
             // Move block down 50px if space is available
-            _currentTetrisBlock.MoveBlock(1, 1, ref PlaySpaceCanvas);
+            _currentTetrisBlock.MoveBlock(0, 1, ref PlaySpaceCanvas);
         }
     }
 }
