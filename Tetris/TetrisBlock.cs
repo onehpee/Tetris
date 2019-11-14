@@ -22,69 +22,70 @@ namespace Tetris
         private int _currentX;
         private int _currentY;
         private readonly Color _blockColor;
-        private bool[] _cellFill;
+        private readonly bool[] _cellFill;
+        private readonly Rectangle[] _blockArray;
 
-        public TetrisBlock(BlockType blockType, ref Grid playSpaceGrid)
+        public TetrisBlock(BlockType blockType, ref Canvas playSpaceCanvas)
         {
             _blockType = blockType;
             _blockColor = new Color();
             _cellFill = new bool[12];
+            _blockArray = new Rectangle[4];
 
             switch (blockType)
             {
                 case BlockType.I:
-                    _blockColor.R = 50;
-                    _blockColor.G = 244;
-                    _blockColor.B = 100;
+                    _blockColor = Colors.Aqua;
+                    _cellFill[1] = true;
+                    _cellFill[4] = true;
+                    _cellFill[7] = true;
+                    _cellFill[10] = true;
                     break;
                 case BlockType.L:
-                    _blockColor.R = 50;
-                    _blockColor.G = 244;
-                    _blockColor.B = 100;
+                    _blockColor = Colors.BlueViolet;
                     break;
                 case BlockType.T:
-                    _blockColor.R = 50;
-                    _blockColor.G = 244;
-                    _blockColor.B = 100;
+                    _blockColor = Colors.Chartreuse;
                     break;
                 case BlockType.Cube:
-                    _blockColor.R = 50;
-                    _blockColor.G = 244;
-                    _blockColor.B = 100;
+                    _blockColor = Colors.DarkGreen;
                     break;
                 case BlockType.Z:
-                    _blockColor.R = 50;
-                    _blockColor.G = 244;
-                    _blockColor.B = 100;
+                    _blockColor = Colors.DarkOrange;
                     break;
                 case BlockType.ReverseZ:
-                    _blockColor.R = 50;
-                    _blockColor.G = 244;
-                    _blockColor.B = 100;
+                    _blockColor = Colors.Red;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(blockType), blockType, null);
             }
-            for (var i = 0; i < 10; i++)
-                playSpaceGrid.RowDefinitions.Add(new RowDefinition());
-            for (var i = 0; i < 20; i++)
-                playSpaceGrid.ColumnDefinitions.Add(new ColumnDefinition());
 
-            DrawBlock(ref playSpaceGrid);
+            DrawBlock(ref playSpaceCanvas);
         }
 
         /// <summary>
         /// Draws the block onto the grid.
         /// </summary>
-        private void DrawBlock(ref Grid playSpaceGrid)
+        private void DrawBlock(ref Canvas playSpaceCanvas)
         {
-            for (var i = 0; i < 200; i++)
-            {
-                // Create a single block of the set color
-                var singleBlock = new Rectangle {Width = 50, Height = 50, Fill = new SolidColorBrush(_blockColor)};
-                
-                playSpaceGrid.Children.Add(singleBlock);
-            }
+            // Create our 4 blocks
+            var block0 = new Rectangle { Width = 50, Height = 50, Fill = new SolidColorBrush(_blockColor), StrokeThickness = 2};
+            var block1 = new Rectangle { Width = 50, Height = 50, Fill = new SolidColorBrush(_blockColor), StrokeThickness = 2};
+            var block2 = new Rectangle { Width = 50, Height = 50, Fill = new SolidColorBrush(_blockColor), StrokeThickness = 2};
+            var block3 = new Rectangle { Width = 50, Height = 50, Fill = new SolidColorBrush(_blockColor), StrokeThickness = 2};
+
+            // Assign to array
+            _blockArray[0] = block0;
+            _blockArray[1] = block1;
+            _blockArray[2] = block2;
+            _blockArray[3] = block3;
+
+            // Draw to canvas
+            playSpaceCanvas.Children.Add(_blockArray[0]);
+            playSpaceCanvas.Children.Add(_blockArray[1]);
+            playSpaceCanvas.Children.Add(_blockArray[2]);
+            playSpaceCanvas.Children.Add(_blockArray[3]);
+
         }
 
         /// <summary>
