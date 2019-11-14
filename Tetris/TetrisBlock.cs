@@ -96,8 +96,28 @@ namespace Tetris
                     Canvas.SetTop(_blockArray[3], 150);
                     break;
                 case BlockType.L:
+                    Canvas.SetLeft(_blockArray[0], 250);
+
+                    Canvas.SetLeft(_blockArray[1], 250);
+                    Canvas.SetTop(_blockArray[1], 50);
+
+                    Canvas.SetLeft(_blockArray[2], 250);
+                    Canvas.SetTop(_blockArray[2], 100);
+
+                    Canvas.SetLeft(_blockArray[3], 300);
+                    Canvas.SetTop(_blockArray[3], 100);
                     break;
                 case BlockType.T:
+                    Canvas.SetLeft(_blockArray[0], 250);
+
+                    Canvas.SetLeft(_blockArray[1], 250);
+                    Canvas.SetTop(_blockArray[1], 50);
+
+                    Canvas.SetLeft(_blockArray[2], 200);
+                    Canvas.SetTop(_blockArray[2], 50);
+
+                    Canvas.SetLeft(_blockArray[3], 300);
+                    Canvas.SetTop(_blockArray[3], 50);
                     break;
                 case BlockType.Cube:
                     break;

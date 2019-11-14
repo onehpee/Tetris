@@ -24,7 +24,7 @@ namespace Tetris
         {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            TetrisBlock tb = new TetrisBlock(BlockType.I, ref PlaySpaceCanvas);
+            TetrisBlock tb = new TetrisBlock(BlockType.L, ref PlaySpaceCanvas);
         }
     }
 }
