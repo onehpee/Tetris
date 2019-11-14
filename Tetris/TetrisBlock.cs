@@ -22,24 +22,18 @@ namespace Tetris
         private int _currentX;
         private int _currentY;
         private readonly Color _blockColor;
-        private readonly bool[] _cellFill;
         private readonly Rectangle[] _blockArray;
 
         public TetrisBlock(BlockType blockType, ref Canvas playSpaceCanvas)
         {
             _blockType = blockType;
             _blockColor = new Color();
-            _cellFill = new bool[12];
             _blockArray = new Rectangle[4];
 
             switch (blockType)
             {
                 case BlockType.I:
-                    _blockColor = Colors.Aqua;
-                    _cellFill[1] = true;
-                    _cellFill[4] = true;
-                    _cellFill[7] = true;
-                    _cellFill[10] = true;
+                    _blockColor = Colors.Gold;
                     break;
                 case BlockType.L:
                     _blockColor = Colors.BlueViolet;
@@ -68,11 +62,12 @@ namespace Tetris
         /// </summary>
         private void DrawBlock(ref Canvas playSpaceCanvas)
         {
+
             // Create our 4 blocks
-            var block0 = new Rectangle { Width = 50, Height = 50, Fill = new SolidColorBrush(_blockColor), StrokeThickness = 2};
-            var block1 = new Rectangle { Width = 50, Height = 50, Fill = new SolidColorBrush(_blockColor), StrokeThickness = 2};
-            var block2 = new Rectangle { Width = 50, Height = 50, Fill = new SolidColorBrush(_blockColor), StrokeThickness = 2};
-            var block3 = new Rectangle { Width = 50, Height = 50, Fill = new SolidColorBrush(_blockColor), StrokeThickness = 2};
+            var block0 = new Rectangle { Width = 50, Height = 50, Fill = new SolidColorBrush(_blockColor), StrokeThickness = 2, Stroke = Brushes.Aqua};
+            var block1 = new Rectangle { Width = 50, Height = 50, Fill = new SolidColorBrush(_blockColor), StrokeThickness = 2, Stroke = Brushes.Aqua };
+            var block2 = new Rectangle { Width = 50, Height = 50, Fill = new SolidColorBrush(_blockColor), StrokeThickness = 2, Stroke = Brushes.Aqua };
+            var block3 = new Rectangle { Width = 50, Height = 50, Fill = new SolidColorBrush(_blockColor), StrokeThickness = 2, Stroke = Brushes.Aqua };
 
             // Assign to array
             _blockArray[0] = block0;
@@ -85,6 +80,32 @@ namespace Tetris
             playSpaceCanvas.Children.Add(_blockArray[1]);
             playSpaceCanvas.Children.Add(_blockArray[2]);
             playSpaceCanvas.Children.Add(_blockArray[3]);
+
+            switch (_blockType)
+            {
+                case BlockType.I:
+                    Canvas.SetLeft(_blockArray[0], 250);
+
+                    Canvas.SetLeft(_blockArray[1], 250);
+                    Canvas.SetTop(_blockArray[1], 50);
+
+                    Canvas.SetLeft(_blockArray[2], 250);
+                    Canvas.SetTop(_blockArray[2], 100);
+
+                    Canvas.SetLeft(_blockArray[3], 250);
+                    Canvas.SetTop(_blockArray[3], 150);
+                    break;
+                case BlockType.L:
+                    break;
+                case BlockType.T:
+                    break;
+                case BlockType.Cube:
+                    break;
+                case BlockType.Z:
+                    break;
+                case BlockType.ReverseZ:
+                    break;
+            }
 
         }
 
