@@ -185,9 +185,8 @@ namespace Tetris
         /// Check to see if this block is colliding with walls or other blocks
         /// </summary>
         /// <param name="playSpaceCanvas">Reference to the canvas containing the blocks</param>
-        public void IsColliding(ref Canvas playSpaceCanvas)
+        public bool IsColliding(ref Canvas playSpaceCanvas)
         {
-
         }
     }
 }

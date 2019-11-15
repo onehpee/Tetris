@@ -55,8 +55,17 @@ namespace Tetris
         private void Timer_Tick(object sender, EventArgs e)
         {
             // Run boolean collision check helper function
-            // Move block down 50px if space is available
-            _currentTetrisBlock.MoveBlock(0, 1, ref PlaySpaceCanvas);
+            // If collision returns true, prevent from dropping further and place block
+            if (_currentTetrisBlock.IsColliding(ref PlaySpaceCanvas))
+            {
+                // Create new random block
+                // 
+            }
+            else
+            {
+                // Move block down 50px if space is available
+                _currentTetrisBlock.MoveBlock(0, 1, ref PlaySpaceCanvas);
+            }
         }
     }
 }
