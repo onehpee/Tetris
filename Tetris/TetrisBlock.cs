@@ -62,10 +62,10 @@ namespace Tetris
         {
 
             // Create our 4 blocks
-            var block0 = new Rectangle { Width = 50, Height = 50, Fill = new SolidColorBrush(_blockColor), StrokeThickness = 2, Stroke = Brushes.Aqua};
-            var block1 = new Rectangle { Width = 50, Height = 50, Fill = new SolidColorBrush(_blockColor), StrokeThickness = 2, Stroke = Brushes.Aqua };
-            var block2 = new Rectangle { Width = 50, Height = 50, Fill = new SolidColorBrush(_blockColor), StrokeThickness = 2, Stroke = Brushes.Aqua };
-            var block3 = new Rectangle { Width = 50, Height = 50, Fill = new SolidColorBrush(_blockColor), StrokeThickness = 2, Stroke = Brushes.Aqua };
+            var block0 = new Rectangle { Width = 25, Height = 25, Fill = new SolidColorBrush(_blockColor), StrokeThickness = 2, Stroke = Brushes.Aqua};
+            var block1 = new Rectangle { Width = 25, Height = 25, Fill = new SolidColorBrush(_blockColor), StrokeThickness = 2, Stroke = Brushes.Aqua };
+            var block2 = new Rectangle { Width = 25, Height = 25, Fill = new SolidColorBrush(_blockColor), StrokeThickness = 2, Stroke = Brushes.Aqua };
+            var block3 = new Rectangle { Width = 25, Height = 25, Fill = new SolidColorBrush(_blockColor), StrokeThickness = 2, Stroke = Brushes.Aqua };
 
             // Assign to array
             _blockArray[0] = block0;
@@ -82,56 +82,56 @@ namespace Tetris
             switch (_blockType)
             {
                 case BlockType.I:
-                    Canvas.SetLeft(_blockArray[0], 250);
+                    Canvas.SetLeft(_blockArray[0], 125);
                     Canvas.SetTop(_blockArray[0], 0);
 
-                    Canvas.SetLeft(_blockArray[1], 250);
-                    Canvas.SetTop(_blockArray[1], 50);
+                    Canvas.SetLeft(_blockArray[1], 125);
+                    Canvas.SetTop(_blockArray[1], 25);
 
-                    Canvas.SetLeft(_blockArray[2], 250);
-                    Canvas.SetTop(_blockArray[2], 100);
-
-                    Canvas.SetLeft(_blockArray[3], 250);
-                    Canvas.SetTop(_blockArray[3], 150);
-                    break;
-                case BlockType.L:
-                    Canvas.SetLeft(_blockArray[0], 250);
-                    Canvas.SetTop(_blockArray[0], 0);
-
-                    Canvas.SetLeft(_blockArray[1], 250);
-                    Canvas.SetTop(_blockArray[1], 50);
-
-                    Canvas.SetLeft(_blockArray[2], 250);
-                    Canvas.SetTop(_blockArray[2], 100);
-
-                    Canvas.SetLeft(_blockArray[3], 300);
-                    Canvas.SetTop(_blockArray[3], 100);
-                    break;
-                case BlockType.T:
-                    Canvas.SetLeft(_blockArray[0], 250);
-                    Canvas.SetTop(_blockArray[0], 0);
-
-                    Canvas.SetLeft(_blockArray[1], 250);
-                    Canvas.SetTop(_blockArray[1], 50);
-
-                    Canvas.SetLeft(_blockArray[2], 200);
+                    Canvas.SetLeft(_blockArray[2], 125);
                     Canvas.SetTop(_blockArray[2], 50);
 
-                    Canvas.SetLeft(_blockArray[3], 300);
-                    Canvas.SetTop(_blockArray[3], 50);
+                    Canvas.SetLeft(_blockArray[3], 125);
+                    Canvas.SetTop(_blockArray[3], 75);
                     break;
-                case BlockType.Cube:
-                    Canvas.SetLeft(_blockArray[0], 250);
+                case BlockType.L:
+                    Canvas.SetLeft(_blockArray[0], 125);
                     Canvas.SetTop(_blockArray[0], 0);
 
-                    Canvas.SetLeft(_blockArray[1], 250);
-                    Canvas.SetTop(_blockArray[1], 100);
+                    Canvas.SetLeft(_blockArray[1], 125);
+                    Canvas.SetTop(_blockArray[1], 25);
 
-                    Canvas.SetLeft(_blockArray[2], 200);
-                    Canvas.SetTop(_blockArray[2], 100);
+                    Canvas.SetLeft(_blockArray[2], 125);
+                    Canvas.SetTop(_blockArray[2], 50);
 
-                    Canvas.SetLeft(_blockArray[3], 300);
-                    Canvas.SetTop(_blockArray[3], 250);
+                    Canvas.SetLeft(_blockArray[3], 150);
+                    Canvas.SetTop(_blockArray[3], 50);
+                    break;
+                case BlockType.T:
+                    Canvas.SetLeft(_blockArray[0], 125);
+                    Canvas.SetTop(_blockArray[0], 0);
+
+                    Canvas.SetLeft(_blockArray[1], 125);
+                    Canvas.SetTop(_blockArray[1], 25);
+
+                    Canvas.SetLeft(_blockArray[2], 100);
+                    Canvas.SetTop(_blockArray[2], 25);
+
+                    Canvas.SetLeft(_blockArray[3], 150);
+                    Canvas.SetTop(_blockArray[3], 25);
+                    break;
+                case BlockType.Cube:
+                    Canvas.SetLeft(_blockArray[0], 125);
+                    Canvas.SetTop(_blockArray[0], 0);
+
+                    Canvas.SetLeft(_blockArray[1], 125);
+                    Canvas.SetTop(_blockArray[1], 50);
+
+                    Canvas.SetLeft(_blockArray[2], 100);
+                    Canvas.SetTop(_blockArray[2], 50);
+
+                    Canvas.SetLeft(_blockArray[3], 150);
+                    Canvas.SetTop(_blockArray[3], 125);
                     break;
                 case BlockType.Z:
                     break;
@@ -149,8 +149,8 @@ namespace Tetris
         /// <param name="playSpaceCanvas">Represents the canvas that blocks exist in</param>
         public void MoveBlock(int x, int y, ref Canvas playSpaceCanvas)
         {
-            var xOffset = (x * 50);
-            var yOffset = (y * 50);
+            var xOffset = (x * 25);
+            var yOffset = (y * 25);
 
             Canvas.SetLeft(_blockArray[0], Canvas.GetLeft(_blockArray[0]) + xOffset);
             Canvas.SetTop(_blockArray[0], Canvas.GetTop(_blockArray[0]) + yOffset);
@@ -187,6 +187,7 @@ namespace Tetris
         /// <param name="playSpaceCanvas">Reference to the canvas containing the blocks</param>
         public bool IsColliding(ref Canvas playSpaceCanvas)
         {
+            return false;
         }
     }
 }
