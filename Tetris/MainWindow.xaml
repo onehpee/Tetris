@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tetris"
         mc:Ignorable="d"
-        Title="Tetris" Height="1056" Width="750">
+        Title="Tetris" Height="564" Width="730">
     <Grid x:Name="TetrisMainWindow" Background="Black">
-        <Canvas x:Name="PlaySpaceCanvas" HorizontalAlignment="Left" Height="1000" Margin="228,10,0,0" VerticalAlignment="Top" Width="500">
+        <Canvas x:Name="PlaySpaceCanvas" HorizontalAlignment="Left" Height="500" Margin="228,10,0,0" VerticalAlignment="Top" Width="250">
             <Canvas.Background>
-                <DrawingBrush TileMode="Tile" Viewport="0,0,50,50" 
+                <DrawingBrush TileMode="Tile" Viewport="0,0,25,25" 
                               ViewportUnits="Absolute">
                     <DrawingBrush.Drawing>
                         <GeometryDrawing>
                             <GeometryDrawing.Geometry>
-                                <RectangleGeometry Rect="50,50,50,50"/>
+                                <RectangleGeometry Rect="25,25,25,25"/>
                             </GeometryDrawing.Geometry>
                             <GeometryDrawing.Pen>
                                 <Pen Brush="Gray" Thickness="1"/>
@@ -42,10 +42,10 @@
                 </DrawingBrush>
             </Grid.Background>
         </Grid>-->
-        <Border x:Name="NextCanvasBorder" BorderBrush="Aqua" BorderThickness="5" Margin="-2,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="225" Height="810">
-            <Canvas x:Name="NextCanvas" HorizontalAlignment="Left" Height="810" Margin="-5" VerticalAlignment="Top" Width="225"/>
+        <Border x:Name="NextCanvasBorder" BorderBrush="Aqua" BorderThickness="5" Margin="-2,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="225" Height="500">
+            <Canvas x:Name="NextCanvas" HorizontalAlignment="Left" Height="500" Margin="-5,-5,-5,0" VerticalAlignment="Top" Width="225"/>
         </Border>
-        <RichTextBox x:Name="ScoreTextBox" Height="66" Margin="20,842,541,0" VerticalAlignment="Top" IsReadOnly="True" Background="Black" BorderBrush="Aqua" BorderThickness="5">
+        <RichTextBox x:Name="ScoreTextBox" Height="66" Margin="504,339,37,0" VerticalAlignment="Top" IsReadOnly="True" Background="Black" BorderBrush="Aqua" BorderThickness="5">
             <FlowDocument>
                 <Paragraph>
                     <Run Text="RichTextBox"/>
@@ -54,7 +54,7 @@
         </RichTextBox>
         <Label x:Name="NextLabel" Content="Next" HorizontalAlignment="Left" Margin="893,10,0,0" VerticalAlignment="Top" Height="60" Width="93" FontSize="36" Background="{x:Null}" Foreground="Aqua"/>
         <Label x:Name="ScoreLabel" Content="Score" HorizontalAlignment="Left" Margin="893,900,0,0" VerticalAlignment="Top" Height="60" Width="113" FontSize="36" Background="{x:Null}" Foreground="Aqua"/>
-        <Button x:Name="StartButton" Content="Start" HorizontalAlignment="Left" Margin="-2,932,0,0" VerticalAlignment="Top" Height="77" Width="225" Click="Start_Button_Click" FontSize="36" FontWeight="Bold" BorderBrush="Aqua" BorderThickness="5" Foreground="Aqua" Background="Transparent">
+        <Button x:Name="StartButton" Content="Start" HorizontalAlignment="Left" Margin="504,451,0,0" VerticalAlignment="Top" Height="59" Width="181" Click="Start_Button_Click" FontSize="36" FontWeight="Bold" BorderBrush="Aqua" BorderThickness="5" Foreground="Aqua" Background="Transparent">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Background" Value="Transparent"/>
