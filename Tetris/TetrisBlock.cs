@@ -377,33 +377,36 @@ namespace Tetris
                 foreach (var uiElement in placedBlocks)
                 {
                     // Check for block collision for each block
-                    if (Canvas.GetTop(block) == Canvas.GetTop(uiElement)+25)
+                    if (Canvas.GetLeft(block) == Canvas.GetLeft(uiElement) && Canvas.GetTop(block) == Canvas.GetTop(uiElement) - 25)
                         return true;
 
-                    if (Canvas.GetTop(block) == Canvas.GetTop(uiElement)-25)
-                        return true;
+                    //if (Canvas.GetLeft(block) == Canvas.GetLeft(uiElement) - 25 && Canvas.GetTop(block) == Canvas.GetTop(uiElement) - 25)
+                    //    return true;
                 }
             }
 
             return false;
         }
 
-        public bool WillCollideSideBlock(List<UIElement> placedBlocks)
+        public int WillCollideSideBlock(List<UIElement> placedBlocks)
         {
             foreach (var block in _blockArray)
             {
                 foreach (var uiElement in placedBlocks)
                 {
                     // Check for block collision for each block
-                    if (Canvas.GetLeft(block) == Canvas.GetLeft(uiElement)+25)
-                        return true;
 
-                    if (Canvas.GetLeft(block) == Canvas.GetLeft(uiElement)-25)
-                        return true;
+                    // Left Check
+                    if (Canvas.GetLeft(block) == Canvas.GetLeft(uiElement) + 25 && Canvas.GetTop(block) == Canvas.GetTop(uiElement))
+                        return 0;
+
+                    // Right Check
+                    if (Canvas.GetLeft(block) == Canvas.GetLeft(uiElement) - 25 && Canvas.GetTop(block) == Canvas.GetTop(uiElement))
+                        return 1;
                 }
             }
 
-            return false;
+            return 2;
         }
 
         private void CreateRotationPositions()
