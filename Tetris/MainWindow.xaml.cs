@@ -55,6 +55,8 @@ namespace Tetris
             {
                 StartButton.Content = "Start";
                 _timer.Stop();
+                PlaySpaceCanvas.Children.Clear();
+                _placedBlocks.Clear();
             }
         }
 
@@ -62,7 +64,7 @@ namespace Tetris
         {
             // Run boolean collision check helper function
             // If collision returns true, prevent from dropping further and place block
-            if (_currentTetrisBlock.WillCollideBottom(ref PlaySpaceCanvas))
+            if (_currentTetrisBlock.WillCollideBottom(ref PlaySpaceCanvas) || _currentTetrisBlock.WillCollideBelowBlock(_placedBlocks))
             {
                 // Add blocks to list of placed blocks
                 foreach (var block in _currentTetrisBlock.GetBlockArray)
@@ -91,17 +93,13 @@ namespace Tetris
             {
                 // Left
                 case Key.A:
-                    if (_currentTetrisBlock.WillCollideWall(ref PlaySpaceCanvas) != 0 )//&& !_currentTetrisBlock.WillCollideSideBlock(_placedBlocks)) 
+                    if (_currentTetrisBlock.WillCollideWall(ref PlaySpaceCanvas) != 0 && _currentTetrisBlock.WillCollideSideBlock(_placedBlocks) != 0)
                         _currentTetrisBlock.MoveBlock(-1, 0, ref PlaySpaceCanvas);
                     break;
                 // Right
                 case Key.D:
-                    if (_currentTetrisBlock.WillCollideWall(ref PlaySpaceCanvas) != 1 )//&& !_currentTetrisBlock.WillCollideSideBlock(_placedBlocks))
+                    if (_currentTetrisBlock.WillCollideWall(ref PlaySpaceCanvas) != 1 && _currentTetrisBlock.WillCollideSideBlock(_placedBlocks) != 1)
                         _currentTetrisBlock.MoveBlock(1, 0, ref PlaySpaceCanvas);
-                    break;
-                case Key.Q:
-                    if (_currentTetrisBlock.WillCollideWall(ref PlaySpaceCanvas) != 1)//&& !_currentTetrisBlock.WillCollideSideBlock(_placedBlocks))
-                        _currentTetrisBlock.RotateBlock(true);
                     break;
             }
         }
