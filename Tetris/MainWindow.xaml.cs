@@ -28,9 +28,10 @@ namespace Tetris
         {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            this.KeyDown += new KeyEventHandler(MainWindow_KeyDown);
 
             // Test Block
-            _currentTetrisBlock = new TetrisBlock(BlockType.L, ref PlaySpaceCanvas);
+            _currentTetrisBlock = new TetrisBlock(BlockType.I, ref PlaySpaceCanvas);
         }
 
         private void Start_Button_Click(object sender, RoutedEventArgs e)
@@ -56,15 +57,33 @@ namespace Tetris
         {
             // Run boolean collision check helper function
             // If collision returns true, prevent from dropping further and place block
-            if (_currentTetrisBlock.IsColliding(ref PlaySpaceCanvas))
+            if (_currentTetrisBlock.WillCollideBottom(ref PlaySpaceCanvas))
             {
                 // Create new random block
-                // 
+                _currentTetrisBlock = new TetrisBlock(BlockType.L, ref PlaySpaceCanvas);
             }
             else
             {
-                // Move block down 50px if space is available
+                // Move block down 1 block if space is available
                 _currentTetrisBlock.MoveBlock(0, 1, ref PlaySpaceCanvas);
+            }
+        }
+
+        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Make sure the block doesn't phase through walls
+            switch (e.Key)
+            {
+                // Left
+                case Key.A:
+                    if (_currentTetrisBlock.WillCollideWall(ref PlaySpaceCanvas) != 0) 
+                        _currentTetrisBlock.MoveBlock(-1, 0, ref PlaySpaceCanvas);
+                    break;
+                // Right
+                case Key.D:
+                    if (_currentTetrisBlock.WillCollideWall(ref PlaySpaceCanvas) != 1)
+                        _currentTetrisBlock.MoveBlock(1, 0, ref PlaySpaceCanvas);
+                    break;
             }
         }
     }
