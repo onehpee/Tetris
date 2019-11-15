@@ -182,12 +182,36 @@ namespace Tetris
         }
 
         /// <summary>
-        /// Check to see if this block is colliding with walls or other blocks
+        /// Check collision status for left (0), right (1), none(2)
         /// </summary>
         /// <param name="playSpaceCanvas">Reference to the canvas containing the blocks</param>
-        public bool IsColliding(ref Canvas playSpaceCanvas)
+        public int WillCollideWall(ref Canvas playSpaceCanvas)
         {
+            // Get block positions
+            foreach (var block in _blockArray)
+            {
+                // Is left wall
+                if (Canvas.GetLeft(block) == 0)
+                    return 0;
+
+                // Is right wall
+                if (Canvas.GetLeft(block) == playSpaceCanvas.ActualWidth - 25)
+                    return 1;
+            }
+
+            return 2;
+        }
+
+        public bool WillCollideBottom(ref Canvas playSpaceCanvas)
+        {
+            foreach (var block in _blockArray)
+            {
+                if (Canvas.GetTop(block) == playSpaceCanvas.ActualHeight - 25)
+                    return true;
+            }
+
             return false;
         }
+
     }
 }
