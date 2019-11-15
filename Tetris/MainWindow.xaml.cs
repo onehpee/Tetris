@@ -71,8 +71,6 @@ namespace Tetris
                 }
 
                 // Create new random block
-
-
                 var values = Enum.GetValues(typeof(BlockType));
                 var random = new Random();
                 var randomBlock = (BlockType)values.GetValue(random.Next(values.Length));
@@ -93,13 +91,17 @@ namespace Tetris
             {
                 // Left
                 case Key.A:
-                    if (_currentTetrisBlock.WillCollideWall(ref PlaySpaceCanvas) != 0 && !_currentTetrisBlock.WillCollideSideBlock(_placedBlocks)) 
+                    if (_currentTetrisBlock.WillCollideWall(ref PlaySpaceCanvas) != 0 )//&& !_currentTetrisBlock.WillCollideSideBlock(_placedBlocks)) 
                         _currentTetrisBlock.MoveBlock(-1, 0, ref PlaySpaceCanvas);
                     break;
                 // Right
                 case Key.D:
-                    if (_currentTetrisBlock.WillCollideWall(ref PlaySpaceCanvas) != 1 && !_currentTetrisBlock.WillCollideSideBlock(_placedBlocks))
+                    if (_currentTetrisBlock.WillCollideWall(ref PlaySpaceCanvas) != 1 )//&& !_currentTetrisBlock.WillCollideSideBlock(_placedBlocks))
                         _currentTetrisBlock.MoveBlock(1, 0, ref PlaySpaceCanvas);
+                    break;
+                case Key.Q:
+                    if (_currentTetrisBlock.WillCollideWall(ref PlaySpaceCanvas) != 1)//&& !_currentTetrisBlock.WillCollideSideBlock(_placedBlocks))
+                        _currentTetrisBlock.RotateBlock(true);
                     break;
             }
         }
