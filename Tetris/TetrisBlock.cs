@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using System.Linq;
 
 namespace Tetris
 {
@@ -54,6 +56,8 @@ namespace Tetris
 
             DrawBlock(ref playSpaceCanvas);
         }
+
+        public Rectangle[] GetBlockArray => _blockArray;
 
         /// <summary>
         /// Draws the block onto the grid.
@@ -124,18 +128,40 @@ namespace Tetris
                     Canvas.SetLeft(_blockArray[0], 125);
                     Canvas.SetTop(_blockArray[0], 0);
 
-                    Canvas.SetLeft(_blockArray[1], 125);
-                    Canvas.SetTop(_blockArray[1], 50);
+                    Canvas.SetLeft(_blockArray[1], 150);
+                    Canvas.SetTop(_blockArray[1], 0);
 
-                    Canvas.SetLeft(_blockArray[2], 100);
-                    Canvas.SetTop(_blockArray[2], 50);
+                    Canvas.SetLeft(_blockArray[2], 125);
+                    Canvas.SetTop(_blockArray[2], 25);
 
                     Canvas.SetLeft(_blockArray[3], 150);
-                    Canvas.SetTop(_blockArray[3], 125);
+                    Canvas.SetTop(_blockArray[3], 25);
                     break;
                 case BlockType.Z:
+                    Canvas.SetLeft(_blockArray[0], 100);
+                    Canvas.SetTop(_blockArray[0], 0);
+
+                    Canvas.SetLeft(_blockArray[1], 125);
+                    Canvas.SetTop(_blockArray[1], 0);
+
+                    Canvas.SetLeft(_blockArray[2], 125);
+                    Canvas.SetTop(_blockArray[2], 25);
+
+                    Canvas.SetLeft(_blockArray[3], 150);
+                    Canvas.SetTop(_blockArray[3], 25);
                     break;
                 case BlockType.ReverseZ:
+                    Canvas.SetLeft(_blockArray[0], 150);
+                    Canvas.SetTop(_blockArray[0], 0);
+
+                    Canvas.SetLeft(_blockArray[1], 125);
+                    Canvas.SetTop(_blockArray[1], 0);
+
+                    Canvas.SetLeft(_blockArray[2], 125);
+                    Canvas.SetTop(_blockArray[2], 25);
+
+                    Canvas.SetLeft(_blockArray[3], 100);
+                    Canvas.SetTop(_blockArray[3], 25);
                     break;
             }
 
@@ -208,6 +234,42 @@ namespace Tetris
             {
                 if (Canvas.GetTop(block) == playSpaceCanvas.ActualHeight - 25)
                     return true;
+            }
+
+            return false;
+        }
+
+        public bool WillCollideBelowBlock(List<UIElement> placedBlocks)
+        {
+            foreach (var block in _blockArray)
+            {
+                foreach (var uiElement in placedBlocks)
+                {
+                    // Check for block collision for each block
+                    if (Canvas.GetTop(block) == Canvas.GetTop(uiElement)+25)
+                        return true;
+
+                    if (Canvas.GetTop(block) == Canvas.GetTop(uiElement)-25)
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool WillCollideSideBlock(List<UIElement> placedBlocks)
+        {
+            foreach (var block in _blockArray)
+            {
+                foreach (var uiElement in placedBlocks)
+                {
+                    // Check for block collision for each block
+                    if (Canvas.GetLeft(block) == Canvas.GetLeft(uiElement)+25)
+                        return true;
+
+                    if (Canvas.GetLeft(block) == Canvas.GetLeft(uiElement)-25)
+                        return true;
+                }
             }
 
             return false;

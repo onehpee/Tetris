@@ -24,14 +24,13 @@ namespace Tetris
     {
         private TetrisBlock _currentTetrisBlock;
         private DispatcherTimer _timer;
+        private List<UIElement> _placedBlocks;
         public MainWindow()
         {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            _placedBlocks = new List<UIElement>();
             this.KeyDown += new KeyEventHandler(MainWindow_KeyDown);
-
-            // Test Block
-            _currentTetrisBlock = new TetrisBlock(BlockType.I, ref PlaySpaceCanvas);
         }
 
         private void Start_Button_Click(object sender, RoutedEventArgs e)
@@ -40,9 +39,15 @@ namespace Tetris
             {
                 StartButton.Content = "Stop";
 
+                // Setup timer
                 _timer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 1) };
-
                 _timer.Tick += Timer_Tick;
+
+                // Random start block
+                var values = Enum.GetValues(typeof(BlockType));
+                var random = new Random();
+                var randomBlock = (BlockType)values.GetValue(random.Next(values.Length));
+                _currentTetrisBlock = new TetrisBlock(randomBlock, ref PlaySpaceCanvas);
 
                 _timer.Start();
             }
@@ -59,8 +64,20 @@ namespace Tetris
             // If collision returns true, prevent from dropping further and place block
             if (_currentTetrisBlock.WillCollideBottom(ref PlaySpaceCanvas))
             {
+                // Add blocks to list of placed blocks
+                foreach (var block in _currentTetrisBlock.GetBlockArray)
+                {
+                    _placedBlocks.Add(block);
+                }
+
                 // Create new random block
-                _currentTetrisBlock = new TetrisBlock(BlockType.L, ref PlaySpaceCanvas);
+
+
+                var values = Enum.GetValues(typeof(BlockType));
+                var random = new Random();
+                var randomBlock = (BlockType)values.GetValue(random.Next(values.Length));
+
+                _currentTetrisBlock = new TetrisBlock(randomBlock, ref PlaySpaceCanvas);
             }
             else
             {
@@ -76,12 +93,12 @@ namespace Tetris
             {
                 // Left
                 case Key.A:
-                    if (_currentTetrisBlock.WillCollideWall(ref PlaySpaceCanvas) != 0) 
+                    if (_currentTetrisBlock.WillCollideWall(ref PlaySpaceCanvas) != 0 && !_currentTetrisBlock.WillCollideSideBlock(_placedBlocks)) 
                         _currentTetrisBlock.MoveBlock(-1, 0, ref PlaySpaceCanvas);
                     break;
                 // Right
                 case Key.D:
-                    if (_currentTetrisBlock.WillCollideWall(ref PlaySpaceCanvas) != 1)
+                    if (_currentTetrisBlock.WillCollideWall(ref PlaySpaceCanvas) != 1 && !_currentTetrisBlock.WillCollideSideBlock(_placedBlocks))
                         _currentTetrisBlock.MoveBlock(1, 0, ref PlaySpaceCanvas);
                     break;
             }
