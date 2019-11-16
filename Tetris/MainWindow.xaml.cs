@@ -109,7 +109,33 @@ namespace Tetris
                     if (_currentTetrisBlock.WillCollideWall(ref PlaySpaceCanvas) != 1 && _currentTetrisBlock.WillCollideSideBlock(_placedBlocks) != 1)
                         _currentTetrisBlock.MoveBlock(1, 0, ref PlaySpaceCanvas);
                     break;
+                // Down
+                case Key.S:
+                    if (!_currentTetrisBlock.WillCollideBottom(ref PlaySpaceCanvas) && _currentTetrisBlock.WillCollideSideBlock(_placedBlocks) != 0)
+                        _currentTetrisBlock.MoveBlock(0, 1, ref PlaySpaceCanvas);
+                    break;
+                // Counter Clock Wise
+                case Key.Q:
+                    if (_currentTetrisBlock.WillCollideWall(ref PlaySpaceCanvas) != 0 && _currentTetrisBlock.WillCollideSideBlock(_placedBlocks) != 0)
+                        _currentTetrisBlock.RotateBlock(false);
+                    break;
+                // Counter Clock Wise Right Hand
+                case Key.J:
+                    if (_currentTetrisBlock.WillCollideWall(ref PlaySpaceCanvas) != 0 && _currentTetrisBlock.WillCollideSideBlock(_placedBlocks) != 0)
+                        _currentTetrisBlock.RotateBlock(false);
+                    break;
+                // Clock Wise
+                case Key.E:
+                    if (_currentTetrisBlock.WillCollideWall(ref PlaySpaceCanvas) != 0 && _currentTetrisBlock.WillCollideSideBlock(_placedBlocks) != 0)
+                        _currentTetrisBlock.RotateBlock(true);
+                    break;
+                // Clock Wise Right Hand
+                case Key.L:
+                    if (_currentTetrisBlock.WillCollideWall(ref PlaySpaceCanvas) != 0 && _currentTetrisBlock.WillCollideSideBlock(_placedBlocks) != 0)
+                        _currentTetrisBlock.RotateBlock(true);
+                    break;
             }
+
         }
     }
 }
