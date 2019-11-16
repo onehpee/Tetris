@@ -30,12 +30,16 @@ namespace Tetris
         private Dictionary<int, int[]> _zRotationDictionary;
         private Dictionary<int, int[]> _rZRotationDictionary;
 
+
         public TetrisBlock(BlockType blockType, ref Canvas playSpaceCanvas)
         {
             _blockType = blockType;
             _blockColor = new Color();
             _blockArray = new Rectangle[4];
             _blockRotationState = 0;
+           
+
+
 
             // Create instance of block rotation dictionaries
             _iRotationDictionary = new Dictionary<int, int[]>();
@@ -211,6 +215,7 @@ namespace Tetris
         /// <param name="clockwise">When true, rotates clockwise. Else, counter clockwise.</param>
         public void RotateBlock(bool clockwise)
         {
+            CreateRotationPositions();
             if (clockwise)
             {
                 // Update state
@@ -413,27 +418,27 @@ namespace Tetris
         {
             //_iRotationDictionary
             _iRotationDictionary[0] = new int[] { 0, 0, 0, 0, 0, 0 };
-            _iRotationDictionary[1] = new int[] { 0, 0, 0, 0, 0, 0 };
-            _iRotationDictionary[2] = new int[] { 0, 0, 0, 0, 0, 0 };
-            _iRotationDictionary[3] = new int[] { 0, 0, 0, 0, 0, 0 };
+            _iRotationDictionary[1] = new int[] { -25, -25, -75, -50, 200, 200};
+            _iRotationDictionary[2] = new int[] { -25,25, -75, 50, 0, 0 };
+            _iRotationDictionary[3] = new int[] { 25, 25, 75, 50, 0, 0 };
             //_lRotationDictionary
             _lRotationDictionary[0] = new int[] { 0, 0, 0, 0, 0, 0 };
-            _lRotationDictionary[1] = new int[] { 0, 0, 0, 0, 0, 0 };
+            _lRotationDictionary[1] = new int[] { 0, 25, 50, 25, 50, 50 };
             _lRotationDictionary[2] = new int[] { 0, 0, 0, 0, 0, 0 };
             _lRotationDictionary[3] = new int[] { 0, 0, 0, 0, 0, 0 };
             //_tRotationDictionary
             _tRotationDictionary[0] = new int[] { 0, 0, 0, 0, 0, 0 };
-            _tRotationDictionary[1] = new int[] { 0, 0, 0, 0, 0, 0 };
+            _tRotationDictionary[1] = new int[] { 25, 0, 25, -25, 25, -50 };
             _tRotationDictionary[2] = new int[] { 0, 0, 0, 0, 0, 0 };
             _tRotationDictionary[3] = new int[] { 0, 0, 0, 0, 0, 0 };
             //_zRotationDictionary
             _zRotationDictionary[0] = new int[] { 0, 0, 0, 0, 0, 0 };
-            _zRotationDictionary[1] = new int[] { 0, 0, 0, 0, 0, 0 };
+            _zRotationDictionary[1] = new int[] { 25, -25, 25, -50, 25, -75 };
             _zRotationDictionary[2] = new int[] { 0, 0, 0, 0, 0, 0 };
             _zRotationDictionary[3] = new int[] { 0, 0, 0, 0, 0, 0 };
             //_rZRotationDictionary
             _rZRotationDictionary[0] = new int[] { 0, 0, 0, 0, 0, 0 };
-            _rZRotationDictionary[1] = new int[] { 0, 0, 0, 0, 0, 0 };
+            _rZRotationDictionary[1] = new int[] { 25, -25, 25, -50, 25, -75 };
             _rZRotationDictionary[2] = new int[] { 0, 0, 0, 0, 0, 0 };
             _rZRotationDictionary[3] = new int[] { 0, 0, 0, 0, 0, 0 };
         }
