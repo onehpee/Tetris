@@ -25,11 +25,39 @@ namespace Tetris
         private TetrisBlock _currentTetrisBlock;
         private DispatcherTimer _timer;
         private List<UIElement> _placedBlocks;
+        private Dictionary<double, List<UIElement>> _rowDictionary;
+        private double _lowestRow;
+        private bool[] _canClearRow;
         public MainWindow()
         {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             _placedBlocks = new List<UIElement>();
+            _lowestRow = 19;
+            _canClearRow = new bool[20];
+            _rowDictionary = new Dictionary<double, List<UIElement>>
+            {
+                [0] = new List<UIElement>(),
+                [1] = new List<UIElement>(),
+                [2] = new List<UIElement>(),
+                [3] = new List<UIElement>(),
+                [4] = new List<UIElement>(),
+                [5] = new List<UIElement>(),
+                [6] = new List<UIElement>(),
+                [7] = new List<UIElement>(),
+                [8] = new List<UIElement>(),
+                [9] = new List<UIElement>(),
+                [10] = new List<UIElement>(),
+                [11] = new List<UIElement>(),
+                [12] = new List<UIElement>(),
+                [13] = new List<UIElement>(),
+                [14] = new List<UIElement>(),
+                [15] = new List<UIElement>(),
+                [16] = new List<UIElement>(),
+                [17] = new List<UIElement>(),
+                [18] = new List<UIElement>(),
+                [19] = new List<UIElement>()
+            };
             this.KeyDown += new KeyEventHandler(MainWindow_KeyDown);
         }
 
@@ -62,6 +90,7 @@ namespace Tetris
 
         private void Timer_Tick(object sender, EventArgs e)
         {
+            //_timer.Stop();
             // Run boolean collision check helper function
             // If collision returns true, prevent from dropping further and place block
             if (_currentTetrisBlock.WillCollideBottom(ref PlaySpaceCanvas) || _currentTetrisBlock.WillCollideBelowBlock(_placedBlocks))
@@ -71,6 +100,15 @@ namespace Tetris
                 {
                     _placedBlocks.Add(block);
                 }
+
+                // Row Clear Check
+                foreach (var currentBlock in _placedBlocks)
+                {
+                    RowChecker(currentBlock);
+                }
+
+                // Clear rows based on above
+                ClearRows();
 
                 // Create new random block
                 var values = Enum.GetValues(typeof(BlockType));
@@ -84,6 +122,7 @@ namespace Tetris
                 // Move block down 1 block if space is available
                 _currentTetrisBlock.MoveBlock(0, 1, ref PlaySpaceCanvas);
             }
+            //_timer.Start();
         }
 
         private void MainWindow_KeyDown(object sender, KeyEventArgs e)
@@ -103,7 +142,7 @@ namespace Tetris
                     break;
                 // Down
                 case Key.S:
-                    if (!_currentTetrisBlock.WillCollideBottom(ref PlaySpaceCanvas) && _currentTetrisBlock.WillCollideSideBlock(_placedBlocks) != 0)
+                    if (!_currentTetrisBlock.WillCollideBottom(ref PlaySpaceCanvas) && _currentTetrisBlock.WillCollideSideBlock(_placedBlocks) != 0 && !_currentTetrisBlock.WillCollideBelowBlock(_placedBlocks))
                         _currentTetrisBlock.MoveBlock(0, 1, ref PlaySpaceCanvas);
                     break;
                 // Counter Clock Wise
@@ -128,6 +167,65 @@ namespace Tetris
                     break;
             }
 
+        }
+
+        private void RowChecker(UIElement currentBlock)
+        {
+            // Only add if new
+            if (!_rowDictionary.Values.Any(row => row.Contains(currentBlock)))
+            {
+                // We use this to just track where blocks are positioned (change this code later if we lag)
+                var currentRow = Canvas.GetTop(currentBlock) / 25;
+                _rowDictionary[currentRow].Add(currentBlock);
+
+                // Mark for delete if 10 exist
+                if (_rowDictionary[currentRow].Count == 10)
+                    _canClearRow[(int)currentRow] = true;
+            }
+        }
+
+        private void ClearRows()
+        {
+            if (_canClearRow.Contains(true))
+            {
+                for (double i = 0; i < 20; i++)
+                {
+                    // If row is marked
+                    if (_canClearRow[(int)i])
+                    {
+                        foreach (var element in _rowDictionary[i])
+                        {
+                            PlaySpaceCanvas.Children.Remove(element);
+                            _placedBlocks.Remove(element);
+                        }
+
+                        // Get the current lowest row on the grid so we know what we can move down.
+                        _lowestRow = i;
+
+                        // Update row to nothing
+                        _rowDictionary[i] = new List<UIElement>();
+                    }
+                }
+
+                // Move down rows until lowest cleared row is hit
+                for (double i = 0; i < _lowestRow; i++)
+                {
+                    foreach (var block in _rowDictionary[i])
+                    {
+                        Canvas.SetTop(block, Canvas.GetTop(block) + 25);
+                    }
+                }
+
+                // Shift keys down 1
+                for (var i = _lowestRow; i > 0; i--)
+                {
+                    // Set current row to above row
+                    _rowDictionary[i] = _rowDictionary[i - 1];
+                }
+
+                // Reset rows that can be cleared
+                _canClearRow = new bool[20];
+            }
         }
     }
 }
