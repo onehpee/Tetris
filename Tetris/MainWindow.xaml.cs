@@ -26,38 +26,13 @@ namespace Tetris
         private DispatcherTimer _timer;
         private List<UIElement> _placedBlocks;
         private Dictionary<double, List<UIElement>> _rowDictionary;
-        private double _lowestRow;
+        private int _lowestRow;
         private bool[] _canClearRow;
         public MainWindow()
         {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            _placedBlocks = new List<UIElement>();
-            _lowestRow = 19;
-            _canClearRow = new bool[20];
-            _rowDictionary = new Dictionary<double, List<UIElement>>
-            {
-                [0] = new List<UIElement>(),
-                [1] = new List<UIElement>(),
-                [2] = new List<UIElement>(),
-                [3] = new List<UIElement>(),
-                [4] = new List<UIElement>(),
-                [5] = new List<UIElement>(),
-                [6] = new List<UIElement>(),
-                [7] = new List<UIElement>(),
-                [8] = new List<UIElement>(),
-                [9] = new List<UIElement>(),
-                [10] = new List<UIElement>(),
-                [11] = new List<UIElement>(),
-                [12] = new List<UIElement>(),
-                [13] = new List<UIElement>(),
-                [14] = new List<UIElement>(),
-                [15] = new List<UIElement>(),
-                [16] = new List<UIElement>(),
-                [17] = new List<UIElement>(),
-                [18] = new List<UIElement>(),
-                [19] = new List<UIElement>()
-            };
+            
             this.KeyDown += new KeyEventHandler(MainWindow_KeyDown);
         }
 
@@ -66,6 +41,33 @@ namespace Tetris
             if ((string)StartButton.Content == "Start")
             {
                 StartButton.Content = "Stop";
+
+                // Reset Variables
+                _placedBlocks = new List<UIElement>();
+                _canClearRow = new bool[20];
+                _rowDictionary = new Dictionary<double, List<UIElement>>
+                {
+                    [0] = new List<UIElement>(),
+                    [1] = new List<UIElement>(),
+                    [2] = new List<UIElement>(),
+                    [3] = new List<UIElement>(),
+                    [4] = new List<UIElement>(),
+                    [5] = new List<UIElement>(),
+                    [6] = new List<UIElement>(),
+                    [7] = new List<UIElement>(),
+                    [8] = new List<UIElement>(),
+                    [9] = new List<UIElement>(),
+                    [10] = new List<UIElement>(),
+                    [11] = new List<UIElement>(),
+                    [12] = new List<UIElement>(),
+                    [13] = new List<UIElement>(),
+                    [14] = new List<UIElement>(),
+                    [15] = new List<UIElement>(),
+                    [16] = new List<UIElement>(),
+                    [17] = new List<UIElement>(),
+                    [18] = new List<UIElement>(),
+                    [19] = new List<UIElement>()
+                };
 
                 // Setup timer
                 _timer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 1) };
@@ -199,28 +201,40 @@ namespace Tetris
                             _placedBlocks.Remove(element);
                         }
 
-                        // Get the current lowest row on the grid so we know what we can move down.
-                        _lowestRow = i;
-
+                        // Update lowest row
+                        _lowestRow = (int)i;
                         // Update row to nothing
                         _rowDictionary[i] = new List<UIElement>();
                     }
                 }
 
-                // Move down rows until lowest cleared row is hit
-                for (double i = 0; i < _lowestRow; i++)
-                {
-                    foreach (var block in _rowDictionary[i])
-                    {
-                        Canvas.SetTop(block, Canvas.GetTop(block) + 25);
-                    }
-                }
+                // Get number of rows cleared
+                //var rowsCleared = _canClearRow.Count(x => x);
+                //var indexesToClear = Enumerable.Range(0, _canClearRow.Length)
+                //    .Where(i => _canClearRow[i])
+                //    .ToList();
 
-                // Shift keys down 1
-                for (var i = _lowestRow; i > 0; i--)
+                // Scan for row that you can shift down to
+                for (var i = 0; i < 20; i++)
                 {
-                    // Set current row to above row
-                    _rowDictionary[i] = _rowDictionary[i - 1];
+                    if (_rowDictionary[i].Count == 0)
+                    {
+                        // When empty row is found, pull above rows down 1;
+                        for (var j = i; j >= 0; j--)
+                        {
+                            // Move blocks
+                            foreach (var block in _rowDictionary[j])
+                            {
+                                Canvas.SetTop(block, Canvas.GetTop(block) + 25);
+                            }
+
+                            // If we're not at the top row, we shift the keys
+                            if (j != 0)
+                                _rowDictionary[j] = _rowDictionary[j - 1];
+                            else
+                                _rowDictionary[j] = new List<UIElement>();
+                        }
+                    }
                 }
 
                 // Reset rows that can be cleared
