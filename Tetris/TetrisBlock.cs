@@ -229,115 +229,117 @@ namespace Tetris
                 {
                     case BlockType.I:
                         Canvas.SetLeft(_blockArray[1], Canvas.GetLeft(_blockArray[1]) + _iRotationDictionary[_blockRotationState][0]);
-                        Canvas.SetTop(_blockArray[1], Canvas.GetTop(_blockArray[1]) + _iRotationDictionary[_blockRotationState][0]);
+                        Canvas.SetTop(_blockArray[1], Canvas.GetTop(_blockArray[1]) + _iRotationDictionary[_blockRotationState][1]);
 
-                        Canvas.SetLeft(_blockArray[2], Canvas.GetLeft(_blockArray[2]) + _iRotationDictionary[_blockRotationState][1]);
-                        Canvas.SetTop(_blockArray[2], Canvas.GetTop(_blockArray[2]) + _iRotationDictionary[_blockRotationState][1]);
+                        Canvas.SetLeft(_blockArray[2], Canvas.GetLeft(_blockArray[2]) + _iRotationDictionary[_blockRotationState][2]);
+                        Canvas.SetTop(_blockArray[2], Canvas.GetTop(_blockArray[2]) + _iRotationDictionary[_blockRotationState][3]);
 
-                        Canvas.SetLeft(_blockArray[3], Canvas.GetLeft(_blockArray[3]) + _iRotationDictionary[_blockRotationState][2]);
-                        Canvas.SetTop(_blockArray[3], Canvas.GetTop(_blockArray[3]) + _iRotationDictionary[_blockRotationState][2]);
+                        Canvas.SetLeft(_blockArray[3], Canvas.GetLeft(_blockArray[3]) + _iRotationDictionary[_blockRotationState][4]);
+                        Canvas.SetTop(_blockArray[3], Canvas.GetTop(_blockArray[3]) + _iRotationDictionary[_blockRotationState][5]);
                         break;
                     case BlockType.L:
                         Canvas.SetLeft(_blockArray[1], Canvas.GetLeft(_blockArray[1]) + _lRotationDictionary[_blockRotationState][0]);
-                        Canvas.SetTop(_blockArray[1], Canvas.GetTop(_blockArray[1]) + _lRotationDictionary[_blockRotationState][0]);
+                        Canvas.SetTop(_blockArray[1], Canvas.GetTop(_blockArray[1]) + _lRotationDictionary[_blockRotationState][1]);
 
-                        Canvas.SetLeft(_blockArray[2], Canvas.GetLeft(_blockArray[2]) + _lRotationDictionary[_blockRotationState][1]);
-                        Canvas.SetTop(_blockArray[2], Canvas.GetTop(_blockArray[2]) + _lRotationDictionary[_blockRotationState][1]);
+                        Canvas.SetLeft(_blockArray[2], Canvas.GetLeft(_blockArray[2]) + _lRotationDictionary[_blockRotationState][2]);
+                        Canvas.SetTop(_blockArray[2], Canvas.GetTop(_blockArray[2]) + _lRotationDictionary[_blockRotationState][3]);
 
-                        Canvas.SetLeft(_blockArray[3], Canvas.GetLeft(_blockArray[3]) + _lRotationDictionary[_blockRotationState][2]);
-                        Canvas.SetTop(_blockArray[3], Canvas.GetTop(_blockArray[3]) + _lRotationDictionary[_blockRotationState][2]);
+                        Canvas.SetLeft(_blockArray[3], Canvas.GetLeft(_blockArray[3]) + _lRotationDictionary[_blockRotationState][4]);
+                        Canvas.SetTop(_blockArray[3], Canvas.GetTop(_blockArray[3]) + _lRotationDictionary[_blockRotationState][5]);
                         break;
                     case BlockType.T:
                         Canvas.SetLeft(_blockArray[1], Canvas.GetLeft(_blockArray[1]) + _tRotationDictionary[_blockRotationState][0]);
-                        Canvas.SetTop(_blockArray[1], Canvas.GetTop(_blockArray[1]) + _tRotationDictionary[_blockRotationState][0]);
+                        Canvas.SetTop(_blockArray[1], Canvas.GetTop(_blockArray[1]) + _tRotationDictionary[_blockRotationState][1]);
 
-                        Canvas.SetLeft(_blockArray[2], Canvas.GetLeft(_blockArray[2]) + _tRotationDictionary[_blockRotationState][1]);
-                        Canvas.SetTop(_blockArray[2], Canvas.GetTop(_blockArray[2]) + _tRotationDictionary[_blockRotationState][1]);
+                        Canvas.SetLeft(_blockArray[2], Canvas.GetLeft(_blockArray[2]) + _tRotationDictionary[_blockRotationState][2]);
+                        Canvas.SetTop(_blockArray[2], Canvas.GetTop(_blockArray[2]) + _tRotationDictionary[_blockRotationState][3]);
 
-                        Canvas.SetLeft(_blockArray[3], Canvas.GetLeft(_blockArray[3]) + _tRotationDictionary[_blockRotationState][2]);
-                        Canvas.SetTop(_blockArray[3], Canvas.GetTop(_blockArray[3]) + _tRotationDictionary[_blockRotationState][2]);
+                        Canvas.SetLeft(_blockArray[3], Canvas.GetLeft(_blockArray[3]) + _tRotationDictionary[_blockRotationState][4]);
+                        Canvas.SetTop(_blockArray[3], Canvas.GetTop(_blockArray[3]) + _tRotationDictionary[_blockRotationState][5]);
                         break;
                     case BlockType.Z:
                         Canvas.SetLeft(_blockArray[1], Canvas.GetLeft(_blockArray[1]) + _zRotationDictionary[_blockRotationState][0]);
-                        Canvas.SetTop(_blockArray[1], Canvas.GetTop(_blockArray[1]) + _zRotationDictionary[_blockRotationState][0]);
+                        Canvas.SetTop(_blockArray[1], Canvas.GetTop(_blockArray[1]) + _zRotationDictionary[_blockRotationState][1]);
 
-                        Canvas.SetLeft(_blockArray[2], Canvas.GetLeft(_blockArray[2]) + _zRotationDictionary[_blockRotationState][1]);
-                        Canvas.SetTop(_blockArray[2], Canvas.GetTop(_blockArray[2]) + _zRotationDictionary[_blockRotationState][1]);
+                        Canvas.SetLeft(_blockArray[2], Canvas.GetLeft(_blockArray[2]) + _zRotationDictionary[_blockRotationState][2]);
+                        Canvas.SetTop(_blockArray[2], Canvas.GetTop(_blockArray[2]) + _zRotationDictionary[_blockRotationState][3]);
 
-                        Canvas.SetLeft(_blockArray[3], Canvas.GetLeft(_blockArray[3]) + _zRotationDictionary[_blockRotationState][2]);
-                        Canvas.SetTop(_blockArray[3], Canvas.GetTop(_blockArray[3]) + _zRotationDictionary[_blockRotationState][2]);
+                        Canvas.SetLeft(_blockArray[3], Canvas.GetLeft(_blockArray[3]) + _zRotationDictionary[_blockRotationState][4]);
+                        Canvas.SetTop(_blockArray[3], Canvas.GetTop(_blockArray[3]) + _zRotationDictionary[_blockRotationState][5]);
                         break;
                     case BlockType.ReverseZ:
                         Canvas.SetLeft(_blockArray[1], Canvas.GetLeft(_blockArray[1]) + _rZRotationDictionary[_blockRotationState][0]);
-                        Canvas.SetTop(_blockArray[1], Canvas.GetTop(_blockArray[1]) + _rZRotationDictionary[_blockRotationState][0]);
+                        Canvas.SetTop(_blockArray[1], Canvas.GetTop(_blockArray[1]) + _rZRotationDictionary[_blockRotationState][1]);
 
-                        Canvas.SetLeft(_blockArray[2], Canvas.GetLeft(_blockArray[2]) + _rZRotationDictionary[_blockRotationState][1]);
-                        Canvas.SetTop(_blockArray[2], Canvas.GetTop(_blockArray[2]) + _rZRotationDictionary[_blockRotationState][1]);
+                        Canvas.SetLeft(_blockArray[2], Canvas.GetLeft(_blockArray[2]) + _rZRotationDictionary[_blockRotationState][2]);
+                        Canvas.SetTop(_blockArray[2], Canvas.GetTop(_blockArray[2]) + _rZRotationDictionary[_blockRotationState][3]);
 
-                        Canvas.SetLeft(_blockArray[3], Canvas.GetLeft(_blockArray[3]) + _rZRotationDictionary[_blockRotationState][2]);
-                        Canvas.SetTop(_blockArray[3], Canvas.GetTop(_blockArray[3]) + _rZRotationDictionary[_blockRotationState][2]);
+                        Canvas.SetLeft(_blockArray[3], Canvas.GetLeft(_blockArray[3]) + _rZRotationDictionary[_blockRotationState][4]);
+                        Canvas.SetTop(_blockArray[3], Canvas.GetTop(_blockArray[3]) + _rZRotationDictionary[_blockRotationState][5]);
                         break;
                 }
             }
             else
             {
                 // Update state
-                if (_blockRotationState == 0)
-                    _blockRotationState = 3;
+                // Update state
+                if (_blockRotationState == 3)
+                    _blockRotationState = 0;
                 else
-                    _blockRotationState--;
-                // When rotating counter clockwise
+                    _blockRotationState++;
+
+                // Rotate blocks clockwise
                 switch (_blockType)
                 {
                     case BlockType.I:
                         Canvas.SetLeft(_blockArray[1], Canvas.GetLeft(_blockArray[1]) + _iRotationDictionary[_blockRotationState][0]);
-                        Canvas.SetTop(_blockArray[1], Canvas.GetTop(_blockArray[1]) + _iRotationDictionary[_blockRotationState][0]);
+                        Canvas.SetTop(_blockArray[1], Canvas.GetTop(_blockArray[1]) + _iRotationDictionary[_blockRotationState][1]);
 
-                        Canvas.SetLeft(_blockArray[2], Canvas.GetLeft(_blockArray[2]) + _iRotationDictionary[_blockRotationState][1]);
-                        Canvas.SetTop(_blockArray[2], Canvas.GetTop(_blockArray[2]) + _iRotationDictionary[_blockRotationState][1]);
+                        Canvas.SetLeft(_blockArray[2], Canvas.GetLeft(_blockArray[2]) + _iRotationDictionary[_blockRotationState][2]);
+                        Canvas.SetTop(_blockArray[2], Canvas.GetTop(_blockArray[2]) + _iRotationDictionary[_blockRotationState][3]);
 
-                        Canvas.SetLeft(_blockArray[3], Canvas.GetLeft(_blockArray[3]) + _iRotationDictionary[_blockRotationState][2]);
-                        Canvas.SetTop(_blockArray[3], Canvas.GetTop(_blockArray[3]) + _iRotationDictionary[_blockRotationState][2]);
+                        Canvas.SetLeft(_blockArray[3], Canvas.GetLeft(_blockArray[3]) + _iRotationDictionary[_blockRotationState][4]);
+                        Canvas.SetTop(_blockArray[3], Canvas.GetTop(_blockArray[3]) + _iRotationDictionary[_blockRotationState][5]);
                         break;
                     case BlockType.L:
-                        Canvas.SetLeft(_blockArray[1], Canvas.GetLeft(_blockArray[1]) + _iRotationDictionary[_blockRotationState][0]);
-                        Canvas.SetTop(_blockArray[1], Canvas.GetTop(_blockArray[1]) + _iRotationDictionary[_blockRotationState][0]);
+                        Canvas.SetLeft(_blockArray[1], Canvas.GetLeft(_blockArray[1]) + _lRotationDictionary[_blockRotationState][0]);
+                        Canvas.SetTop(_blockArray[1], Canvas.GetTop(_blockArray[1]) + _lRotationDictionary[_blockRotationState][1]);
 
-                        Canvas.SetLeft(_blockArray[2], Canvas.GetLeft(_blockArray[2]) + _iRotationDictionary[_blockRotationState][1]);
-                        Canvas.SetTop(_blockArray[2], Canvas.GetTop(_blockArray[2]) + _iRotationDictionary[_blockRotationState][1]);
+                        Canvas.SetLeft(_blockArray[2], Canvas.GetLeft(_blockArray[2]) + _lRotationDictionary[_blockRotationState][2]);
+                        Canvas.SetTop(_blockArray[2], Canvas.GetTop(_blockArray[2]) + _lRotationDictionary[_blockRotationState][3]);
 
-                        Canvas.SetLeft(_blockArray[3], Canvas.GetLeft(_blockArray[3]) + _iRotationDictionary[_blockRotationState][2]);
-                        Canvas.SetTop(_blockArray[3], Canvas.GetTop(_blockArray[3]) + _iRotationDictionary[_blockRotationState][2]);
+                        Canvas.SetLeft(_blockArray[3], Canvas.GetLeft(_blockArray[3]) + _lRotationDictionary[_blockRotationState][4]);
+                        Canvas.SetTop(_blockArray[3], Canvas.GetTop(_blockArray[3]) + _lRotationDictionary[_blockRotationState][5]);
                         break;
                     case BlockType.T:
-                        Canvas.SetLeft(_blockArray[1], Canvas.GetLeft(_blockArray[1]) + _iRotationDictionary[_blockRotationState][0]);
-                        Canvas.SetTop(_blockArray[1], Canvas.GetTop(_blockArray[1]) + _iRotationDictionary[_blockRotationState][0]);
+                        Canvas.SetLeft(_blockArray[1], Canvas.GetLeft(_blockArray[1]) + _tRotationDictionary[_blockRotationState][0]);
+                        Canvas.SetTop(_blockArray[1], Canvas.GetTop(_blockArray[1]) + _tRotationDictionary[_blockRotationState][1]);
 
-                        Canvas.SetLeft(_blockArray[2], Canvas.GetLeft(_blockArray[2]) + _iRotationDictionary[_blockRotationState][1]);
-                        Canvas.SetTop(_blockArray[2], Canvas.GetTop(_blockArray[2]) + _iRotationDictionary[_blockRotationState][1]);
+                        Canvas.SetLeft(_blockArray[2], Canvas.GetLeft(_blockArray[2]) + _tRotationDictionary[_blockRotationState][2]);
+                        Canvas.SetTop(_blockArray[2], Canvas.GetTop(_blockArray[2]) + _tRotationDictionary[_blockRotationState][3]);
 
-                        Canvas.SetLeft(_blockArray[3], Canvas.GetLeft(_blockArray[3]) + _iRotationDictionary[_blockRotationState][2]);
-                        Canvas.SetTop(_blockArray[3], Canvas.GetTop(_blockArray[3]) + _iRotationDictionary[_blockRotationState][2]);
+                        Canvas.SetLeft(_blockArray[3], Canvas.GetLeft(_blockArray[3]) + _tRotationDictionary[_blockRotationState][4]);
+                        Canvas.SetTop(_blockArray[3], Canvas.GetTop(_blockArray[3]) + _tRotationDictionary[_blockRotationState][5]);
                         break;
                     case BlockType.Z:
-                        Canvas.SetLeft(_blockArray[1], Canvas.GetLeft(_blockArray[1]) + _iRotationDictionary[_blockRotationState][0]);
-                        Canvas.SetTop(_blockArray[1], Canvas.GetTop(_blockArray[1]) + _iRotationDictionary[_blockRotationState][0]);
+                        Canvas.SetLeft(_blockArray[1], Canvas.GetLeft(_blockArray[1]) + _zRotationDictionary[_blockRotationState][0]);
+                        Canvas.SetTop(_blockArray[1], Canvas.GetTop(_blockArray[1]) + _zRotationDictionary[_blockRotationState][1]);
 
-                        Canvas.SetLeft(_blockArray[2], Canvas.GetLeft(_blockArray[2]) + _iRotationDictionary[_blockRotationState][1]);
-                        Canvas.SetTop(_blockArray[2], Canvas.GetTop(_blockArray[2]) + _iRotationDictionary[_blockRotationState][1]);
+                        Canvas.SetLeft(_blockArray[2], Canvas.GetLeft(_blockArray[2]) + _zRotationDictionary[_blockRotationState][2]);
+                        Canvas.SetTop(_blockArray[2], Canvas.GetTop(_blockArray[2]) + _zRotationDictionary[_blockRotationState][3]);
 
-                        Canvas.SetLeft(_blockArray[3], Canvas.GetLeft(_blockArray[3]) + _iRotationDictionary[_blockRotationState][2]);
-                        Canvas.SetTop(_blockArray[3], Canvas.GetTop(_blockArray[3]) + _iRotationDictionary[_blockRotationState][2]);
+                        Canvas.SetLeft(_blockArray[3], Canvas.GetLeft(_blockArray[3]) + _zRotationDictionary[_blockRotationState][4]);
+                        Canvas.SetTop(_blockArray[3], Canvas.GetTop(_blockArray[3]) + _zRotationDictionary[_blockRotationState][5]);
                         break;
                     case BlockType.ReverseZ:
-                        Canvas.SetLeft(_blockArray[1], Canvas.GetLeft(_blockArray[1]) + _iRotationDictionary[_blockRotationState][0]);
-                        Canvas.SetTop(_blockArray[1], Canvas.GetTop(_blockArray[1]) + _iRotationDictionary[_blockRotationState][0]);
+                        Canvas.SetLeft(_blockArray[1], Canvas.GetLeft(_blockArray[1]) + _rZRotationDictionary[_blockRotationState][0]);
+                        Canvas.SetTop(_blockArray[1], Canvas.GetTop(_blockArray[1]) + _rZRotationDictionary[_blockRotationState][1]);
 
-                        Canvas.SetLeft(_blockArray[2], Canvas.GetLeft(_blockArray[2]) + _iRotationDictionary[_blockRotationState][1]);
-                        Canvas.SetTop(_blockArray[2], Canvas.GetTop(_blockArray[2]) + _iRotationDictionary[_blockRotationState][1]);
+                        Canvas.SetLeft(_blockArray[2], Canvas.GetLeft(_blockArray[2]) + _rZRotationDictionary[_blockRotationState][2]);
+                        Canvas.SetTop(_blockArray[2], Canvas.GetTop(_blockArray[2]) + _rZRotationDictionary[_blockRotationState][3]);
 
-                        Canvas.SetLeft(_blockArray[3], Canvas.GetLeft(_blockArray[3]) + _iRotationDictionary[_blockRotationState][2]);
-                        Canvas.SetTop(_blockArray[3], Canvas.GetTop(_blockArray[3]) + _iRotationDictionary[_blockRotationState][2]);
+                        Canvas.SetLeft(_blockArray[3], Canvas.GetLeft(_blockArray[3]) + _rZRotationDictionary[_blockRotationState][4]);
+                        Canvas.SetTop(_blockArray[3], Canvas.GetTop(_blockArray[3]) + _rZRotationDictionary[_blockRotationState][5]);
                         break;
                 }
             }
@@ -417,30 +419,30 @@ namespace Tetris
         private void CreateRotationPositions()
         {
             //_iRotationDictionary
-            _iRotationDictionary[0] = new int[] { 0, 0, 0, 0, 0, 0 };
-            _iRotationDictionary[1] = new int[] { -25, -25, -75, -50, 200, 200};
-            _iRotationDictionary[2] = new int[] { -25,25, -75, 50, 0, 0 };
-            _iRotationDictionary[3] = new int[] { 25, 25, 75, 50, 0, 0 };
+            _iRotationDictionary[0] = new int[] { -25, 25, -50, 50, -75, 75 };
+            _iRotationDictionary[1] = new int[] { -25, -25, -50, -50, -75, -75};
+            _iRotationDictionary[2] = new int[] { 25,-25, 50, -50, 75, -75 };
+            _iRotationDictionary[3] = new int[] { 25, 25, 50, 50, 75, 75 };
             //_lRotationDictionary
-            _lRotationDictionary[0] = new int[] { 0, 0, 0, 0, 0, 0 };
-            _lRotationDictionary[1] = new int[] { 0, 25, 50, 25, 50, 50 };
-            _lRotationDictionary[2] = new int[] { 0, 0, 0, 0, 0, 0 };
-            _lRotationDictionary[3] = new int[] { 0, 0, 0, 0, 0, 0 };
+            _lRotationDictionary[0] = new int[] { -25, 25, -50, 50, -25, 75 };
+            _lRotationDictionary[1] = new int[] { -25, -25, -50, -50, -75, -25 };
+            _lRotationDictionary[2] = new int[] { 25, -25, 50, -50, 25, -75 };
+            _lRotationDictionary[3] = new int[] { 25, 25, 50, 50, 75, 25 };
             //_tRotationDictionary
-            _tRotationDictionary[0] = new int[] { 0, 0, 0, 0, 0, 0 };
-            _tRotationDictionary[1] = new int[] { 25, 0, 25, -25, 25, -50 };
-            _tRotationDictionary[2] = new int[] { 0, 0, 0, 0, 0, 0 };
-            _tRotationDictionary[3] = new int[] { 0, 0, 0, 0, 0, 0 };
+            _tRotationDictionary[0] = new int[] { -25, 25, -50, 0, 0, 50 };
+            _tRotationDictionary[1] = new int[] { -25, -25, 0, -50 ,-50, 0 };
+            _tRotationDictionary[2] = new int[] { 25, -25, 50, 0, 0, -50 };
+            _tRotationDictionary[3] = new int[] { 25, 25, 0, 50, 50, 0 };
             //_zRotationDictionary
-            _zRotationDictionary[0] = new int[] { 0, 0, 0, 0, 0, 0 };
-            _zRotationDictionary[1] = new int[] { 25, -25, 25, -50, 25, -75 };
-            _zRotationDictionary[2] = new int[] { 0, 0, 0, 0, 0, 0 };
-            _zRotationDictionary[3] = new int[] { 0, 0, 0, 0, 0, 0 };
+            _zRotationDictionary[0] = new int[] { 25, 25, 0, 50, 25, 75 };
+            _zRotationDictionary[1] = new int[] { -25, 25, -50, 0, -75, 25 };
+            _zRotationDictionary[2] = new int[] { -25, -25, 0, -50, -25, -75 };
+            _zRotationDictionary[3] = new int[] { 25, -25, 50, 0, 75, -25 };
             //_rZRotationDictionary
-            _rZRotationDictionary[0] = new int[] { 0, 0, 0, 0, 0, 0 };
-            _rZRotationDictionary[1] = new int[] { 25, -25, 25, -50, 25, -75 };
-            _rZRotationDictionary[2] = new int[] { 0, 0, 0, 0, 0, 0 };
-            _rZRotationDictionary[3] = new int[] { 0, 0, 0, 0, 0, 0 };
+            _rZRotationDictionary[0] = new int[] { -25, 50, 0, 50, -25, 25 };
+            _rZRotationDictionary[1] = new int[] { 25, -25, 0, -50, 25, -75 };
+            _rZRotationDictionary[2] = new int[] { 25, 25, 0, 50, 25, 75 };
+            _rZRotationDictionary[3] = new int[] { -25, 25, 0, 0, -25, 25 };
         }
     }
 }
