@@ -14,6 +14,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Resources;
+using System.IO;
+using System.Media;
+
+
+
 
 namespace Tetris
 {
@@ -31,9 +37,15 @@ namespace Tetris
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             _placedBlocks = new List<UIElement>();
             this.KeyDown += new KeyEventHandler(MainWindow_KeyDown);
+            SoundPlayer sp = new SoundPlayer();
+            sp.SoundLocation = "https://www47.online-convert.com/dl/web2/download-file/88c70988-9a54-4b5d-b86d-9c9c3102262d/tetris-gameboy-02.wav";
+            sp.PlayLooping();
+
+
+
         }
 
-        private void Start_Button_Click(object sender, RoutedEventArgs e)
+    private void Start_Button_Click(object sender, RoutedEventArgs e)
         {
             if ((string)StartButton.Content == "Start")
             {
