@@ -72,6 +72,14 @@ namespace Tetris
                     _placedBlocks.Add(block);
                 }
 
+                // Row Clear Check
+                foreach (var placedBlock in _placedBlocks)
+                {
+                    var dictOfRows = new Dictionary<double, int[]>();
+                    //dictOfRows[0] = new int[];
+                    //dictOfRows[1] = new int[];
+                }
+
                 // Create new random block
                 var values = Enum.GetValues(typeof(BlockType));
                 var random = new Random();
