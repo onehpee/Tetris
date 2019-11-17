@@ -45,9 +45,6 @@ namespace Tetris
             SoundPlayer sp = new SoundPlayer();
             sp.SoundLocation = "https://www47.online-convert.com/dl/web2/download-file/88c70988-9a54-4b5d-b86d-9c9c3102262d/tetris-gameboy-02.wav";
             sp.PlayLooping();
-
-
-
         }
 
     private void Start_Button_Click(object sender, RoutedEventArgs e)
@@ -132,6 +129,9 @@ namespace Tetris
                 var randomBlock = (BlockType)values.GetValue(random.Next(values.Length));
 
                 _currentTetrisBlock = new TetrisBlock(randomBlock, ref PlaySpaceCanvas);
+
+                if (GameOverCheck())
+                    _timer.Stop();
             }
             else
             {
@@ -254,6 +254,20 @@ namespace Tetris
                 // Reset rows that can be cleared
                 _canClearRow = new bool[20];
             }
+        }
+
+        private bool GameOverCheck()
+        {
+            for (var i = 0; i < 3; i++)
+            {
+                foreach (var block in _rowDictionary[i])
+                {
+                    if (Canvas.GetLeft(block) > 75 || Canvas.GetLeft(block) < 150)
+                        return true;
+                }
+            }
+
+            return false;
         }
     }
 }
