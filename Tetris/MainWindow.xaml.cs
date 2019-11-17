@@ -47,7 +47,12 @@ namespace Tetris
             sp.PlayLooping();
         }
 
-    private void Start_Button_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Button click event to start a new game or stop current game.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Start_Button_Click(object sender, RoutedEventArgs e)
         {
             if ((string)StartButton.Content == "Start")
             {
@@ -101,6 +106,11 @@ namespace Tetris
             }
         }
 
+        /// <summary>
+        /// Checks to perform every timer tick
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Timer_Tick(object sender, EventArgs e)
         {
             // Track time
@@ -147,6 +157,11 @@ namespace Tetris
             }
         }
 
+        /// <summary>
+        /// All keypress listeners
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainWindow_KeyDown(object sender, KeyEventArgs e)
         {
             // Make sure the block doesn't phase through walls
@@ -191,6 +206,10 @@ namespace Tetris
 
         }
 
+        /// <summary>
+        /// Checks if a row is ready to be marked for deletion
+        /// </summary>
+        /// <param name="currentBlock">Current block in the foreach that will call this method</param>
         private void RowChecker(UIElement currentBlock)
         {
             // Only add if new
@@ -206,6 +225,9 @@ namespace Tetris
             }
         }
 
+        /// <summary>
+        /// Helper function that handles row clearing
+        /// </summary>
         private void ClearRows()
         {
             if (_canClearRow.Contains(true))
@@ -262,6 +284,11 @@ namespace Tetris
             }
         }
 
+        /// <summary>
+        /// Checks if the game has completed by checking zones where
+        /// block collision will occur
+        /// </summary>
+        /// <returns>true or false depending of if game is ready to complete</returns>
         private bool GameOverCheck()
         {
             for (var i = 0; i < 3; i++)
