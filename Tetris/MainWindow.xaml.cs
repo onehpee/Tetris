@@ -34,6 +34,8 @@ namespace Tetris
         private Dictionary<double, List<UIElement>> _rowDictionary;
         private int _lowestRow;
         private bool[] _canClearRow;
+        private int _totalRowsCleared;
+        private int _totalPointsEarned;
         public MainWindow()
         {
             InitializeComponent();
@@ -221,10 +223,10 @@ namespace Tetris
                 }
 
                 // Get number of rows cleared
-                //var rowsCleared = _canClearRow.Count(x => x);
-                //var indexesToClear = Enumerable.Range(0, _canClearRow.Length)
-                //    .Where(i => _canClearRow[i])
-                //    .ToList();
+                var rowsCleared = _canClearRow.Count(x => x);
+                _totalRowsCleared += rowsCleared;
+                _totalPointsEarned += rowsCleared * 50;
+
 
                 // Scan for row that you can shift down to
                 for (var i = 0; i < 20; i++)
