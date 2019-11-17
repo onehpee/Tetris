@@ -17,6 +17,8 @@ using System.Windows.Threading;
 using System.Resources;
 using System.IO;
 using System.Media;
+using System.Diagnostics;
+using System.Threading;
 
 
 
@@ -34,6 +36,11 @@ namespace Tetris
         private Dictionary<double, List<UIElement>> _rowDictionary;
         private int _lowestRow;
         private bool[] _canClearRow;
+        
+        
+        
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -41,18 +48,25 @@ namespace Tetris
             
             this.KeyDown += new KeyEventHandler(MainWindow_KeyDown);
             SoundPlayer sp = new SoundPlayer();
-            sp.SoundLocation = "https://www47.online-convert.com/dl/web2/download-file/88c70988-9a54-4b5d-b86d-9c9c3102262d/tetris-gameboy-02.wav";
-            sp.PlayLooping();
+           // sp.SoundLocation = "https://www47.online-convert.com/dl/web2/download-file/88c70988-9a54-4b5d-b86d-9c9c3102262d/tetris-gameboy-02.wav";
+            //sp.PlayLooping();
 
 
 
         }
 
-    private void Start_Button_Click(object sender, RoutedEventArgs e)
+    public void Start_Button_Click(object sender, RoutedEventArgs e)
         {
+            Stopwatch Stopwatch = new Stopwatch();
+            Stopwatch.Start();
+            
             if ((string)StartButton.Content == "Start")
             {
+               
+                Thread.Sleep(1);
                 StartButton.Content = "Stop";
+                
+               
 
                 // Reset Variables
                 _placedBlocks = new List<UIElement>();
@@ -85,6 +99,8 @@ namespace Tetris
                 _timer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 1) };
                 _timer.Tick += Timer_Tick;
 
+               
+
                 // Random start block
                 var values = Enum.GetValues(typeof(BlockType));
                 var random = new Random();
@@ -95,10 +111,19 @@ namespace Tetris
             }
             else
             {
+
                 StartButton.Content = "Start";
                 _timer.Stop();
                 PlaySpaceCanvas.Children.Clear();
                 _placedBlocks.Clear();
+                Stopwatch.Stop();
+                TimeSpan ts = Stopwatch.Elapsed;
+                string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+            ts.Hours, ts.Minutes, ts.Seconds,
+            ts.Milliseconds / 10);
+               // Console.WriteLine("RunTime " + elapsedTime);
+                MessageBox.Show("RunTime " + elapsedTime);
+                
             }
         }
 
@@ -202,11 +227,13 @@ namespace Tetris
         {
             if (_canClearRow.Contains(true))
             {
+                
                 for (double i = 0; i < 20; i++)
                 {
                     // If row is marked
                     if (_canClearRow[(int)i])
                     {
+                       
                         foreach (var element in _rowDictionary[i])
                         {
                             PlaySpaceCanvas.Children.Remove(element);
@@ -219,9 +246,10 @@ namespace Tetris
                         _rowDictionary[i] = new List<UIElement>();
                     }
                 }
-
+                
                 // Get number of rows cleared
-                //var rowsCleared = _canClearRow.Count(x => x);
+               // var rowsCleared = _canClearRow.Count(x => x);
+                //MessageBox.Show("Rows cleared" + rowsCleared);
                 //var indexesToClear = Enumerable.Range(0, _canClearRow.Length)
                 //    .Where(i => _canClearRow[i])
                 //    .ToList();

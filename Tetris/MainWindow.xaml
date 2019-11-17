@@ -49,6 +49,9 @@
             <FlowDocument>
                 <Paragraph>
                     <Run Text="RichTextBox"/>
+                    <InlineUIContainer>
+                        <Label Content="Label" Height="53" Width="162"/>
+                    </InlineUIContainer>
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
@@ -66,5 +69,15 @@
                 </Style>
             </Button.Style>
         </Button>
+        <RichTextBox x:Name="Timertextbox" Height="66" Margin="504,241,37,0" VerticalAlignment="Top" IsReadOnly="True" Background="Black" BorderBrush="Aqua" BorderThickness="5">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="RichTextBox"/>
+                    <InlineUIContainer>
+                        <Label x:Name="Timelabel" Content="Label" Height="55" Width="115"/>
+                    </InlineUIContainer>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
     </Grid>
 </Window>
