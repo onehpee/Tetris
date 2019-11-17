@@ -36,14 +36,14 @@ namespace Tetris
         private bool[] _canClearRow;
         private int _totalRowsCleared;
         private int _totalPointsEarned;
+        private int _totalSecondsPlayed;
         public MainWindow()
         {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             
             this.KeyDown += new KeyEventHandler(MainWindow_KeyDown);
-            SoundPlayer sp = new SoundPlayer();
-            sp.SoundLocation = "https://www47.online-convert.com/dl/web2/download-file/88c70988-9a54-4b5d-b86d-9c9c3102262d/tetris-gameboy-02.wav";
+            var sp = new SoundPlayer {SoundLocation = "Music/tetris-gameboy-02.wav"};
             sp.PlayLooping();
         }
 
@@ -103,7 +103,9 @@ namespace Tetris
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            //_timer.Stop();
+            // Track time
+            _totalSecondsPlayed++;
+
             // Run boolean collision check helper function
             // If collision returns true, prevent from dropping further and place block
             if (_currentTetrisBlock.WillCollideBottom(ref PlaySpaceCanvas) || _currentTetrisBlock.WillCollideBelowBlock(_placedBlocks))
@@ -131,14 +133,18 @@ namespace Tetris
                 _currentTetrisBlock = new TetrisBlock(randomBlock, ref PlaySpaceCanvas);
 
                 if (GameOverCheck())
+                {
                     _timer.Stop();
+                    var endGameWindow = new EndGameWindow(_totalSecondsPlayed, _totalPointsEarned, _totalRowsCleared);
+                    endGameWindow.ShowDialog();
+                }
+                    
             }
             else
             {
                 // Move block down 1 block if space is available
                 _currentTetrisBlock.MoveBlock(0, 1, ref PlaySpaceCanvas);
             }
-            //_timer.Start();
         }
 
         private void MainWindow_KeyDown(object sender, KeyEventArgs e)
@@ -262,7 +268,7 @@ namespace Tetris
             {
                 foreach (var block in _rowDictionary[i])
                 {
-                    if (Canvas.GetLeft(block) > 75 || Canvas.GetLeft(block) < 150)
+                    if (Canvas.GetLeft(block) > 125 || Canvas.GetLeft(block) < 175)
                         return true;
                 }
             }
