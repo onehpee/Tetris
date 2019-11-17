@@ -36,10 +36,16 @@ namespace Tetris
         private Dictionary<double, List<UIElement>> _rowDictionary;
         private int _lowestRow;
         private bool[] _canClearRow;
+
         
         
         
 
+
+
+        private int _totalRowsCleared;
+        private int _totalPointsEarned;
+        private string _ticingclck;
 
         public MainWindow()
         {
@@ -48,27 +54,35 @@ namespace Tetris
             
             this.KeyDown += new KeyEventHandler(MainWindow_KeyDown);
             SoundPlayer sp = new SoundPlayer();
-           // sp.SoundLocation = "https://www47.online-convert.com/dl/web2/download-file/88c70988-9a54-4b5d-b86d-9c9c3102262d/tetris-gameboy-02.wav";
+           //sp.SoundLocation = "https://www47.online-convert.com/dl/web2/download-file/88c70988-9a54-4b5d-b86d-9c9c3102262d/tetris-gameboy-02.wav";
             //sp.PlayLooping();
 
 
 
         }
 
+        
     public void Start_Button_Click(object sender, RoutedEventArgs e)
         {
             Stopwatch Stopwatch = new Stopwatch();
-            Stopwatch.Start();
+            
             
             if ((string)StartButton.Content == "Start")
             {
                
-                Thread.Sleep(1);
+                Thread.Sleep(1000);
                 StartButton.Content = "Stop";
-                
-               
+                Timelabel.Content = "";
+                //Stopwatch.Stop();
+                TimeSpan ts = Stopwatch.Elapsed;
+                string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+            ts.Hours, ts.Minutes, ts.Seconds,
+            ts.Milliseconds / 10);
 
-                // Reset Variables
+                Timelabel.Content += elapsedTime;
+                ScoreLabel.Content = _totalPointsEarned;
+                MessageBox.Show("Score: " + _totalPointsEarned + "\n" + "Rows Cleared" + _totalRowsCleared + "\n" + elapsedTime);
+                // Reset Variables 
                 _placedBlocks = new List<UIElement>();
                 _canClearRow = new bool[20];
                 _rowDictionary = new Dictionary<double, List<UIElement>>
@@ -108,6 +122,8 @@ namespace Tetris
                 _currentTetrisBlock = new TetrisBlock(randomBlock, ref PlaySpaceCanvas);
 
                 _timer.Start();
+                Stopwatch.Start();
+                Thread.Sleep(1000);
             }
             else
             {
@@ -116,17 +132,17 @@ namespace Tetris
                 _timer.Stop();
                 PlaySpaceCanvas.Children.Clear();
                 _placedBlocks.Clear();
-                Stopwatch.Stop();
-                TimeSpan ts = Stopwatch.Elapsed;
-                string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-            ts.Hours, ts.Minutes, ts.Seconds,
-            ts.Milliseconds / 10);
-               // Console.WriteLine("RunTime " + elapsedTime);
-                MessageBox.Show("RunTime " + elapsedTime);
+               
+                // Console.WriteLine("RunTime " + elapsedTime);
+                // var currentime = elapsedTime;
+                //_ticingclck += currentime;
+
                 
             }
+            
         }
 
+        
         private void Timer_Tick(object sender, EventArgs e)
         {
             //_timer.Stop();
@@ -248,11 +264,18 @@ namespace Tetris
                 }
                 
                 // Get number of rows cleared
+
                // var rowsCleared = _canClearRow.Count(x => x);
                 //MessageBox.Show("Rows cleared" + rowsCleared);
                 //var indexesToClear = Enumerable.Range(0, _canClearRow.Length)
                 //    .Where(i => _canClearRow[i])
                 //    .ToList();
+
+                var rowsCleared = _canClearRow.Count(x => x);
+                _totalRowsCleared += rowsCleared;
+                _totalPointsEarned += rowsCleared * 50;
+                ScoreLabel.Content = _totalPointsEarned;
+                
 
                 // Scan for row that you can shift down to
                 for (var i = 0; i < 20; i++)
@@ -280,6 +303,9 @@ namespace Tetris
                 // Reset rows that can be cleared
                 _canClearRow = new bool[20];
             }
+     
         }
+
+        
     }
 }

@@ -50,7 +50,7 @@
                 <Paragraph>
                     <Run Text="RichTextBox"/>
                     <InlineUIContainer>
-                        <Label Content="Label" Height="53" Width="162"/>
+                        <Label x:Name="Scorelabel" Content="" Height="53" Width="162"/>
                     </InlineUIContainer>
                 </Paragraph>
             </FlowDocument>
@@ -74,7 +74,7 @@
                 <Paragraph>
                     <Run Text="RichTextBox"/>
                     <InlineUIContainer>
-                        <Label x:Name="Timelabel" Content="Label" Height="55" Width="115"/>
+                        <Label x:Name="Timelabel" Content="" Height="55" Width="115"/>
                     </InlineUIContainer>
                 </Paragraph>
             </FlowDocument>
