@@ -24,13 +24,19 @@ namespace Tetris
         private readonly Color _blockColor;
         private readonly Rectangle[] _blockArray;
         private int _blockRotationState;
+
+        // Dictionaries for each rotation
         private Dictionary<int, int[]> _iRotationDictionary;
         private Dictionary<int, int[]> _lRotationDictionary;
         private Dictionary<int, int[]> _tRotationDictionary;
         private Dictionary<int, int[]> _zRotationDictionary;
         private Dictionary<int, int[]> _rZRotationDictionary;
 
-
+        /// <summary>
+        /// Creates a new Tetris Block based on the block type enum
+        /// </summary>
+        /// <param name="blockType">I,L,T,Z,RZ</param>
+        /// <param name="playSpaceCanvas">Current play space</param>
         public TetrisBlock(BlockType blockType, ref Canvas playSpaceCanvas)
         {
             _blockType = blockType;
@@ -48,6 +54,7 @@ namespace Tetris
             _zRotationDictionary = new Dictionary<int, int[]>();
             _rZRotationDictionary = new Dictionary<int, int[]>();
 
+            // Set color based on block type
             switch (blockType)
             {
                 case BlockType.I:
@@ -72,9 +79,13 @@ namespace Tetris
                     throw new ArgumentOutOfRangeException(nameof(blockType), blockType, null);
             }
 
+            // Draw our block on the canvas
             DrawBlock(ref playSpaceCanvas);
         }
 
+        /// <summary>
+        /// Public get accessor for the block array
+        /// </summary>
         public Rectangle[] GetBlockArray => _blockArray;
 
         /// <summary>
@@ -366,6 +377,11 @@ namespace Tetris
             return 2;
         }
 
+        /// <summary>
+        /// Check collision status for bottom of canvas
+        /// </summary>
+        /// <param name="playSpaceCanvas">Current canvas</param>
+        /// <returns>true/false</returns>
         public bool WillCollideBottom(ref Canvas playSpaceCanvas)
         {
             foreach (var block in _blockArray)
@@ -377,6 +393,11 @@ namespace Tetris
             return false;
         }
 
+        /// <summary>
+        /// Check collision status for below blocks
+        /// </summary>
+        /// <param name="placedBlocks">List of blocks that have been placed on the canvas</param>
+        /// <returns>true/false</returns>
         public bool WillCollideBelowBlock(List<UIElement> placedBlocks)
         {
             foreach (var block in _blockArray)
@@ -395,6 +416,11 @@ namespace Tetris
             return false;
         }
 
+        /// <summary>
+        /// Check collision status for hitting the side of a block
+        /// </summary>
+        /// <param name="placedBlocks">List of blocks that have been placed on the canvas</param>
+        /// <returns>true/false</returns>
         public int WillCollideSideBlock(List<UIElement> placedBlocks)
         {
             foreach (var block in _blockArray)
@@ -416,6 +442,9 @@ namespace Tetris
             return 2;
         }
 
+        /// <summary>
+        /// Setup for all rotation positions
+        /// </summary>
         private void CreateRotationPositions()
         {
             //_iRotationDictionary
